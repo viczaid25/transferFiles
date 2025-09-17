@@ -1,38 +1,57 @@
 ﻿@{
     ViewData["Title"] = "Transfer creado";
     var link = (string)ViewBag.TransferLink;
+    var validityDays = (int?)ViewBag.ValidityDays ?? 7;
 }
-<div class="alert alert-success mt-4">
-    <strong>¡Listo!</strong> Comparte este link:
-    <div class="mt-2">
-        <input id="generatedLink" class="form-control" value="@link" readonly />
-        <div class="form-text">El link se copió automáticamente al portapapeles.</div>
-    </div>
-</div>
 
-<div class="mt-4 d-flex gap-2">
-    <a asp-controller="Transfers" asp-action="New" class="btn btn-outline-secondary">
-        Crear otro
-    </a>
-    <a asp-controller="Links" asp-action="Mine" class="btn btn-primary">
-        Ver mis links
-    </a>
-    <button id="copyBtn" type="button" class="btn btn-outline-secondary">Copiar link</button>
+<div class="card shadow-sm rounded-lg mt-2">
+    <div class="card-header custom-header-primary d-flex align-items-center">
+        <i class="fa-solid fa-circle-check me-2"></i>
+        <span>¡Listo! Tu link fue generado</span>
+    </div>
+
+    <div class="card-body">
+        <p class="mb-2">
+            Comparte este link. Es válido por <strong>@validityDays día@(validityDays == 1 ? "" : "s")</strong>.
+        </p>
+
+        <!-- Campo de link con botón de copiar integrado -->
+        <div class="input-group mb-2">
+            <input id="generatedLink" class="form-control" value="@link" readonly />
+            <button id="copyBtn" type="button" class="btn btn-outline-secondary">
+                <i class="fa-regular fa-copy me-1"></i> Copiar
+            </button>
+            <a href="@link" target="_blank" rel="noopener" class="btn btn-primary">
+                <i class="fa-solid fa-up-right-from-square me-1"></i> Abrir
+            </a>
+        </div>
+        <div class="form-text">El link se copió automáticamente al portapapeles.</div>
+
+        <!-- Acciones -->
+        <div class="d-flex flex-wrap gap-2 mt-4">
+            <a asp-controller="Transfers" asp-action="New" class="btn btn-outline-secondary">
+                <i class="fa-solid fa-plus me-1"></i> Crear otro
+            </a>
+            <a asp-controller="Links" asp-action="Mine" class="btn btn-outline-primary">
+                <i class="fa-solid fa-link me-1"></i> Ver mis links
+            </a>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
     <script>
-        (async () => {
-          const input = document.getElementById('generatedLink');
+        (function () {
+          const input   = document.getElementById('generatedLink');
           const copyBtn = document.getElementById('copyBtn');
-          const url = input?.value ?? '';
+          const url     = input?.value ?? '';
 
           async function copyText(text) {
             try {
               await navigator.clipboard.writeText(text);
               return true;
             } catch {
-              // Fallback
+              // Fallback para navegadores viejos
               input.select();
               document.execCommand('copy');
               return true;
@@ -40,14 +59,14 @@
           }
 
           // Auto-copia al cargar
-          if (url) { await copyText(url); }
+          if (url) { copyText(url); }
 
           // Botón "Copiar"
           copyBtn?.addEventListener('click', async () => {
             if (await copyText(url)) {
-              const old = copyBtn.textContent;
-              copyBtn.textContent = 'Copiado';
-              setTimeout(() => copyBtn.textContent = old, 1500);
+              const old = copyBtn.innerHTML;
+              copyBtn.innerHTML = '<i class="fa-solid fa-check me-1"></i> Copiado';
+              setTimeout(() => copyBtn.innerHTML = old, 1200);
             }
           });
         })();

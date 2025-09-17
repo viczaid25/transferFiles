@@ -170,3 +170,4 @@ C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\refin
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\transferFiles.pdb
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\transferFiles.genruntimeconfig.cache
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\ref\transferFiles.dll
+C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\transferFiles.sourcelink.json

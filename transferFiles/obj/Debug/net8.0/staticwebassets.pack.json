@@ -13,6 +13,22 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\favicon.ico",
+      "PackagePath": "staticwebassets\\images\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\icons\\icon-192.png",
+      "PackagePath": "staticwebassets\\images\\icons\\icon-192.png"
+    },
+    {
+      "Id": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\icons\\icon-512.png",
+      "PackagePath": "staticwebassets\\images\\icons\\icon-512.png"
+    },
+    {
+      "Id": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
       "Id": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
@@ -243,6 +259,14 @@
     {
       "Id": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\manifest.json",
+      "PackagePath": "staticwebassets\\manifest.json"
+    },
+    {
+      "Id": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\sw.js",
+      "PackagePath": "staticwebassets\\sw.js"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.transferFiles.props",

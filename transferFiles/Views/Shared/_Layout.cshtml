@@ -1,55 +1,134 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpCtx
+<!DOCTYPE html>
+<html lang="es">
 <head>
+    <meta name="theme-color" content="#2c5fa8">
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>@ViewData["Title"] - transferFiles</title>
+
+    <!-- (Opcional) PWA -->
+    <link rel="manifest" href="~/manifest.json" />
+
+    <!-- Favicon / Logo -->
+    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico" />
+
+    <!-- CSS -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/transferFiles.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    @RenderSection("Styles", required: false)
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">transferFiles</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Links" asp-action="Mine">
-                                <i class="fa-solid fa-link"></i> Mis links
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
+    <!-- Topbar (usa .top-navbar de tu CSS) -->
+    <header class="navbar navbar-dark top-navbar">
+        <div class="container-fluid d-flex justify-content-between align-items-center" style="height: var(--navbar-h);">
+            <div class="d-flex align-items-center">
+                <img src="~/images/logo.png" alt="Logo" height="32" class="me-2" />
+                <a class="navbar-brand fw-bold mb-0 h1" asp-controller="Home" asp-action="Index">Transfer Files</a>
             </div>
-        </nav>
+            <button class="navbar-toggler" type="button" id="sidebarToggle" aria-label="Mostrar/Ocultar menú">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - transferFiles - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!-- Sidebar (usa .sidebar de tu CSS) -->
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-menu p-2">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">
+                        <i class="fas fa-home me-2"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Transfers" asp-action="New">
+                        <i class="fas fa-paper-plane me-2"></i> Crear link
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Links" asp-action="Mine">
+                        <i class="fas fa-link me-2"></i> Mis links
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://10.228.25.9:8080/ords/f?p=118:1:1844335932074:::::" target="_blank" rel="noopener">
+                        <i class="fas fa-database me-2"></i> MEAX Requests System
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        
+    </nav>
+
+    <!-- Backdrop para móviles (tu CSS ya lo contempla con .sidebar-backdrop) -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- Contenido principal (usa .content-wrapper de tu CSS) -->
+    <main class="content-wrapper">
+        @RenderBody()
+    </main>
+
+    <!-- Footer oscuro sencillo -->
+    <footer class="footer bg-dark text-white py-4 mt-auto">
+        <div class="container text-center">
+            <p class="mb-0">&copy; @DateTime.Now.Year - transferFiles</p>
+            <p class="small mb-0">Versión 1.0.0</p>
         </div>
     </footer>
+
+    <!-- JS -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        // Marcar activo en el menú según ruta
+        (function markActive() {
+            const path = location.pathname.toLowerCase();
+            document.querySelectorAll('.sidebar .nav-link').forEach(a => {
+                const href = (a.getAttribute('href') || '').toLowerCase();
+                if (href && path.startsWith(href)) a.classList.add('active');
+            });
+        })();
+
+        // Toggle Sidebar (coincide con tus clases de CSS)
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebarBackdrop');
+        const toggleBtn = document.getElementById('sidebarToggle');
+
+        function openSidebar() {
+            sidebar.classList.add('active');           
+            document.body.classList.add('sidebar-open');
+            backdrop.style.display = 'block';
+        }
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            document.body.classList.remove('sidebar-open');
+            backdrop.style.display = 'none';
+        }
+
+        toggleBtn?.addEventListener('click', () => {
+            const isOpen = sidebar.classList.contains('active');
+            isOpen ? closeSidebar() : openSidebar();
+        });
+
+        backdrop?.addEventListener('click', closeSidebar);
+
+        // Cerrar al navegar en móviles
+        document.querySelectorAll('.sidebar .nav-link').forEach(a => {
+            a.addEventListener('click', () => {
+                if (window.innerWidth <= 992) closeSidebar();
+            });
+        });
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

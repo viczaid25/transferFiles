@@ -1,22 +1,425 @@
-html {
-  font-size: 14px;
+/* =========================
+   Variables
+   ========================= */
+:root {
+    --color-primary: #2c5fa8;
+    --color-primary-2: #3a7fc1;
+    --color-primary-gradient: linear-gradient(90deg,#2c5fa8,#3a7fc1);
+    --color-secondary: #2f3e4d;
+    --color-dark: #1c1e22;
+    --text: #0f172a; /* más oscuro que #000 puro */
+    --text-muted: #6b7280;
+    --bg: #f8f9fc;
+    --surface: #ffffff;
+    --border: #e5e7eb;
+    --placeholder: #9ca3af;
+    --sidebar-w: 240px;
+    --navbar-h: 56px;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow-sm: 0 2px 6px rgba(0,0,0,.06);
+    --shadow-md: 0 6px 16px rgba(0,0,0,.08);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,.12);
+    --focus: 0 0 0 .25rem rgba(44,95,168,.3);
+    --bs-primary-rgb: 44,95,168; /* #2C5FA8 */
+    --bs-primary: #2c5fa8;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+/* =================
+   Base
+   ================= */
+* {
+    box-sizing: border-box
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+html, body {
+    height: 100%
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.page-title {
+    color: var(--text) !important
+}
+
+/* =================
+   Navbar
+   ================= */
+.top-navbar, header.navbar {
+    background: var(--color-primary-gradient);
+    backdrop-filter: saturate(140%) blur(6px);
+    box-shadow: var(--shadow-sm);
+    z-index: 1030;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--navbar-h);
+}
+
+/* ==============
+   Sidebar
+   ============== */
+.sidebar {
+    position: fixed;
+    top: var(--navbar-h);
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-w);
+    background: var(--color-secondary);
+    color: #fff;
+    overflow-y: auto;
+    border-right: 1px solid rgba(255,255,255,.06);
+    box-shadow: 4px 0 12px rgba(0,0,0,.08);
+    transform: translateX(0);
+    transition: transform .25s ease;
+    z-index: 1020;
+}
+
+.sidebar-menu .nav-link {
+    padding: .6rem 1rem;
+    color: #fff;
+    border-left: 3px solid transparent;
+    transition: background-color .2s ease,border-color .2s ease;
+    font-size: .925rem;
+    font-weight: 600;
+}
+
+    .sidebar-menu .nav-link:hover,
+    .sidebar-menu .nav-link.active {
+        background: rgba(255,255,255,.08);
+        border-left-color: #8ab5ff;
+    }
+
+    .sidebar-menu .nav-link i {
+        width: 18px;
+        text-align: center;
+        margin-right: .5rem
+    }
+
+.sidebar-footer {
+    position: sticky;
+    bottom: 0;
+    padding: .6rem;
+    background: rgba(0,0,0,.18);
+    backdrop-filter: blur(2px);
+}
+
+    .sidebar-footer .btn {
+        padding: .35rem .6rem;
+        font-size: .82rem
+    }
+
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%)
+    }
+
+        .sidebar.active {
+            transform: translateX(0)
+        }
+
+    body.sidebar-open {
+        overflow: hidden
+    }
+
+    .sidebar-backdrop {
+        content: "";
+        position: fixed;
+        inset: var(--navbar-h) 0 0 0;
+        background: rgba(0,0,0,.35);
+        backdrop-filter: blur(2px);
+        z-index: 1019;
+        display: none;
+    }
+
+    .sidebar.active + .sidebar-backdrop {
+        display: block
+    }
+}
+
+/* ====================
+   Contenido Principal
+   ==================== */
+.content-wrapper {
+    margin-top: var(--navbar-h);
+    margin-left: var(--sidebar-w);
+    padding: 1.25rem;
+    min-height: calc(100vh - var(--navbar-h));
+    transition: margin-left .25s ease;
+}
+
+@media (max-width: 992px) {
+    .content-wrapper {
+        margin-left: 0
+    }
+}
+
+/* ===================
+   Tarjetas
+   =================== */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+
+    .card:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px)
+    }
+
+.card-header {
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+}
+
+/* ===================
+   Titulares
+   =================== */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--text);
+}
+
+    h1::after, h2::after, h3::after {
+        content: "";
+        display: block;
+        width: 28%;
+        height: 3px;
+        margin-top: .35rem;
+        background: linear-gradient(90deg,var(--color-primary),var(--color-primary-2));
+        border-radius: 2px;
+    }
+
+/* =====================
+   Formularios
+   ===================== */
+.form-control, .form-select {
+    background: #fff !important;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: .5rem .9rem;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.04);
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--color-primary);
+        box-shadow: var(--focus);
+    }
+
+    .form-control::placeholder {
+        color: var(--placeholder)
+    }
+
+.form-floating > label {
+    color: #334155 !important;
+    font-weight: 600;
+    font-size: .95rem;
+    background: transparent !important;
+}
+
+/* ==================
+   Botones
+   ================== */
+.btn {
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: transform .1s ease, box-shadow .2s ease
+}
+
+    .btn:active {
+        transform: translateY(1px)
+    }
+
+.btn-primary {
+    background: var(--color-primary);
+    border-color: var(--color-primary)
+}
+
+    .btn-primary:hover {
+        background: var(--color-primary-2);
+        border-color: var(--color-primary-2);
+        box-shadow: 0 8px 18px rgba(44,95,168,.25)
+    }
+
+.btn-outline-primary {
+    color: var(--color-primary);
+    border-color: var(--color-primary)
+}
+
+    .btn-outline-primary:hover {
+        color: #fff;
+        background: var(--color-primary);
+        border-color: var(--color-primary)
+    }
+
+/* Ripple más sutil */
+.btn:after {
+    content: "";
+    position: absolute;
+    inset: auto auto 50% 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.5);
+    transform: translate(-50%,-50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.btn:hover:after {
+    animation: ripple .45s ease-out
+}
+
+@keyframes ripple {
+    0% {
+        opacity: .5;
+        transform: translate(-50%,-50%) scale(0)
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%,-50%) scale(18)
+    }
+}
+
+/* =================
+   Tablas
+   ================= */
+.table {
+    --bs-table-bg: transparent;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+    .table thead th {
+        border-bottom: 2px solid var(--border);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: .74rem;
+        letter-spacing: .5px;
+        color: #64748b;
+    }
+
+    .table td, .table th {
+        padding: .8rem .75rem;
+        vertical-align: middle;
+        border-top: 1px solid var(--border);
+    }
+
+.table-hover tbody tr:hover {
+    background: #f4f6fa
+}
+/* sin transform para evitar saltos */
+
+/* =================
+   Utilidades
+   ================= */
+.rounded-3 {
+    border-radius: var(--radius) !important
+}
+
+.rounded-lg {
+    border-radius: calc(var(--radius) + 4px) !important
+}
+
+.badge {
+    font-weight: 600;
+    padding: .35em .65em;
+    font-size: .75em;
+    letter-spacing: .5px
+}
+
+/* Asegura que bg-primary use tu tono */
+.bg-primary,
+.card-header.bg-primary {
+    background-color: var(--bs-primary) !important;
+}
+
+/* Texto SIEMPRE blanco en headers primarios */
+.card-header.bg-primary,
+.card-header.text-white {
+    color: #fff !important;
+}
+
+/* Asegura que el ícono herede el color */
+.card-header .fa {
+    color: currentColor;
+}
+
+/* =================
+   Accesibilidad / Motion
+   ================= */
+:focus-visible {
+    outline: none;
+    box-shadow: var(--focus)
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important
+    }
+}
+
+/* === Fix de headers de tarjeta con nuestro tema === */
+.card-header.custom-header-primary {
+    background: var(--color-primary-gradient) !important;
+    background-color: var(--color-primary) !important; /* fallback */
+    color: #fff !important;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+    /* Asegurar texto blanco adentro (h1..h6, íconos, etc.) */
+    .card-header.custom-header-primary *,
+    .card-header.custom-header-primary h1,
+    .card-header.custom-header-primary h2,
+    .card-header.custom-header-primary h3,
+    .card-header.custom-header-primary h4,
+    .card-header.custom-header-primary h5,
+    .card-header.custom-header-primary h6,
+    .card-header.custom-header-primary i,
+    .card-header.custom-header-primary .fa {
+        color: #fff !important;
+    }
+
+/* Si dejas bg-primary en otras vistas, que use tu azul y texto blanco */
+:root {
+    --bs-primary: #2c5fa8;
+    --bs-primary-rgb: 44,95,168;
+}
+
+.card-header.bg-primary {
+    background-color: var(--bs-primary) !important;
+    color: #fff !important;
+}
+
+    .card-header.bg-primary * {
+        color: inherit !important;
+    }
+
+/* Kill switch global para subrayado decorativo en títulos */
+h1::after,
+h2::after,
+h3::after,
+h4::after,
+h5::after,
+h6::after {
+    content: none !important;
+    display: none !important;
 }

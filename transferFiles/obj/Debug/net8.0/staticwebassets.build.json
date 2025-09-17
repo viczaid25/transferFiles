@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bdNsJRz/aWj4BHaVsiMtCRWhi7AL9lNKVuiCZZmmCtA=",
+  "Hash": "7wPMhzPazBYXmqcRsZU2TIM1ZpuNTcWCb98+vK2gH4M=",
   "Source": "transferFiles",
   "BasePath": "_content/transferFiles",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "c2tiyv64ts",
-      "Integrity": "pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=",
+      "Fingerprint": "3z33jz5umb",
+      "Integrity": "IZpZGsL80/60h826dCYdCRU5OBVCXlHb/xFnuTE9kLU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -99,6 +99,90 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\favicon.ico",
+      "SourceId": "transferFiles",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\",
+      "BasePath": "_content/transferFiles",
+      "RelativePath": "images/favicon#[.{fingerprint}]?.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "4kd072fb9f",
+      "Integrity": "XFxD2Loj89DljnT8Diqp1keWnbOlsIXL9SN9MT2YzZU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\icons\\icon-192.png",
+      "SourceId": "transferFiles",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\",
+      "BasePath": "_content/transferFiles",
+      "RelativePath": "images/icons/icon-192#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "pg78kh2e21",
+      "Integrity": "ye/GtpmkFctoKGN5GsPqk5uFmHmegzDKUbEhRVlnhOA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\icons\\icon-192.png"
+    },
+    {
+      "Identity": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\icons\\icon-512.png",
+      "SourceId": "transferFiles",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\",
+      "BasePath": "_content/transferFiles",
+      "RelativePath": "images/icons/icon-512#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "6djb14y0r9",
+      "Integrity": "Nni0vuDsLVbngYYJUCiSXIGepcTF5MRiSFy+3IrXNYE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\icons\\icon-512.png"
+    },
+    {
+      "Identity": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\logo.png",
+      "SourceId": "transferFiles",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\",
+      "BasePath": "_content/transferFiles",
+      "RelativePath": "images/logo#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "debin4ie9w",
+      "Integrity": "y07LlESaoWPO1U/wXxQtfcSIL9Gu5amqNYIRWXzXqTs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\logo.png"
     },
     {
       "Identity": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\js\\site.js",
@@ -1317,11 +1401,53 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\manifest.json",
+      "SourceId": "transferFiles",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\",
+      "BasePath": "_content/transferFiles",
+      "RelativePath": "manifest#[.{fingerprint}]?.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "g1amw6ywq6",
+      "Integrity": "rAtCQsXzNYWdrzC7jrTHu5+XeoTKks+ih2YyQ2QtLF0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\manifest.json"
+    },
+    {
+      "Identity": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\sw.js",
+      "SourceId": "transferFiles",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\",
+      "BasePath": "_content/transferFiles",
+      "RelativePath": "sw#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "f6vxh0t8lf",
+      "Integrity": "F50DOIBE/gUvcOV2Su4JGoDhvij7RbC/kD/dDK6hyvk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\sw.js"
     }
   ],
   "Endpoints": [
     {
-      "Route": "css/site.c2tiyv64ts.css",
+      "Route": "css/site.3z33jz5umb.css",
       "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1331,7 +1457,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "362"
+          "Value": "9834"
         },
         {
           "Name": "Content-Type",
@@ -1339,11 +1465,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
+          "Value": "\"IZpZGsL80/60h826dCYdCRU5OBVCXlHb/xFnuTE9kLU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 18:50:12 GMT"
+          "Value": "Wed, 17 Sep 2025 21:19:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1353,7 +1479,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "c2tiyv64ts"
+          "Value": "3z33jz5umb"
         },
         {
           "Name": "label",
@@ -1361,7 +1487,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
+          "Value": "sha256-IZpZGsL80/60h826dCYdCRU5OBVCXlHb/xFnuTE9kLU="
         }
       ]
     },
@@ -1376,7 +1502,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "362"
+          "Value": "9834"
         },
         {
           "Name": "Content-Type",
@@ -1384,11 +1510,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
+          "Value": "\"IZpZGsL80/60h826dCYdCRU5OBVCXlHb/xFnuTE9kLU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 11 Sep 2025 18:50:12 GMT"
+          "Value": "Wed, 17 Sep 2025 21:19:37 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1398,7 +1524,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
+          "Value": "sha256-IZpZGsL80/60h826dCYdCRU5OBVCXlHb/xFnuTE9kLU="
         }
       ]
     },
@@ -1481,6 +1607,334 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+        }
+      ]
+    },
+    {
+      "Route": "images/favicon.4kd072fb9f.ico",
+      "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\favicon.ico",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15406"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/x-icon"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XFxD2Loj89DljnT8Diqp1keWnbOlsIXL9SN9MT2YzZU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 07 Aug 2025 15:39:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4kd072fb9f"
+        },
+        {
+          "Name": "label",
+          "Value": "images/favicon.ico"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XFxD2Loj89DljnT8Diqp1keWnbOlsIXL9SN9MT2YzZU="
+        }
+      ]
+    },
+    {
+      "Route": "images/favicon.ico",
+      "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\favicon.ico",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15406"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/x-icon"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XFxD2Loj89DljnT8Diqp1keWnbOlsIXL9SN9MT2YzZU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 07 Aug 2025 15:39:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-XFxD2Loj89DljnT8Diqp1keWnbOlsIXL9SN9MT2YzZU="
+        }
+      ]
+    },
+    {
+      "Route": "images/icons/icon-192.pg78kh2e21.png",
+      "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\icons\\icon-192.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8719"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ye/GtpmkFctoKGN5GsPqk5uFmHmegzDKUbEhRVlnhOA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 07 Aug 2025 15:45:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pg78kh2e21"
+        },
+        {
+          "Name": "label",
+          "Value": "images/icons/icon-192.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ye/GtpmkFctoKGN5GsPqk5uFmHmegzDKUbEhRVlnhOA="
+        }
+      ]
+    },
+    {
+      "Route": "images/icons/icon-192.png",
+      "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\icons\\icon-192.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8719"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ye/GtpmkFctoKGN5GsPqk5uFmHmegzDKUbEhRVlnhOA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 07 Aug 2025 15:45:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ye/GtpmkFctoKGN5GsPqk5uFmHmegzDKUbEhRVlnhOA="
+        }
+      ]
+    },
+    {
+      "Route": "images/icons/icon-512.6djb14y0r9.png",
+      "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\icons\\icon-512.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "26692"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Nni0vuDsLVbngYYJUCiSXIGepcTF5MRiSFy+3IrXNYE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 07 Aug 2025 15:45:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6djb14y0r9"
+        },
+        {
+          "Name": "label",
+          "Value": "images/icons/icon-512.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Nni0vuDsLVbngYYJUCiSXIGepcTF5MRiSFy+3IrXNYE="
+        }
+      ]
+    },
+    {
+      "Route": "images/icons/icon-512.png",
+      "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\icons\\icon-512.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "26692"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Nni0vuDsLVbngYYJUCiSXIGepcTF5MRiSFy+3IrXNYE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 07 Aug 2025 15:45:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Nni0vuDsLVbngYYJUCiSXIGepcTF5MRiSFy+3IrXNYE="
+        }
+      ]
+    },
+    {
+      "Route": "images/logo.debin4ie9w.png",
+      "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "36944"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y07LlESaoWPO1U/wXxQtfcSIL9Gu5amqNYIRWXzXqTs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 07 Aug 2025 15:18:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "debin4ie9w"
+        },
+        {
+          "Name": "label",
+          "Value": "images/logo.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-y07LlESaoWPO1U/wXxQtfcSIL9Gu5amqNYIRWXzXqTs="
+        }
+      ]
+    },
+    {
+      "Route": "images/logo.png",
+      "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "36944"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y07LlESaoWPO1U/wXxQtfcSIL9Gu5amqNYIRWXzXqTs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 07 Aug 2025 15:18:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-y07LlESaoWPO1U/wXxQtfcSIL9Gu5amqNYIRWXzXqTs="
         }
       ]
     },
@@ -6237,6 +6691,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
+        }
+      ]
+    },
+    {
+      "Route": "manifest.g1amw6ywq6.json",
+      "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\manifest.json",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "474"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rAtCQsXzNYWdrzC7jrTHu5+XeoTKks+ih2YyQ2QtLF0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 07 Aug 2025 15:56:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "g1amw6ywq6"
+        },
+        {
+          "Name": "label",
+          "Value": "manifest.json"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rAtCQsXzNYWdrzC7jrTHu5+XeoTKks+ih2YyQ2QtLF0="
+        }
+      ]
+    },
+    {
+      "Route": "manifest.json",
+      "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\manifest.json",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "474"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/json"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rAtCQsXzNYWdrzC7jrTHu5+XeoTKks+ih2YyQ2QtLF0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 07 Aug 2025 15:56:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rAtCQsXzNYWdrzC7jrTHu5+XeoTKks+ih2YyQ2QtLF0="
+        }
+      ]
+    },
+    {
+      "Route": "sw.f6vxh0t8lf.js",
+      "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\sw.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "298"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"F50DOIBE/gUvcOV2Su4JGoDhvij7RbC/kD/dDK6hyvk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 07 Aug 2025 15:56:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "f6vxh0t8lf"
+        },
+        {
+          "Name": "label",
+          "Value": "sw.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-F50DOIBE/gUvcOV2Su4JGoDhvij7RbC/kD/dDK6hyvk="
+        }
+      ]
+    },
+    {
+      "Route": "sw.js",
+      "AssetFile": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\sw.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "298"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"F50DOIBE/gUvcOV2Su4JGoDhvij7RbC/kD/dDK6hyvk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 07 Aug 2025 15:56:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-F50DOIBE/gUvcOV2Su4JGoDhvij7RbC/kD/dDK6hyvk="
         }
       ]
     },
