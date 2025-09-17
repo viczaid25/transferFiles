@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Transfer creado";
+    var link = (string)ViewBag.TransferLink;
+}
+<div class="alert alert-success mt-4">
+    <strong>¡Listo!</strong> Comparte este link:
+    <div class="mt-2">
+        <input id="generatedLink" class="form-control" value="@link" readonly />
+        <div class="form-text">El link se copió automáticamente al portapapeles.</div>
+    </div>
+</div>
+
+<div class="mt-4 d-flex gap-2">
+    <a asp-controller="Transfers" asp-action="New" class="btn btn-outline-secondary">
+        Crear otro
+    </a>
+    <a asp-controller="Links" asp-action="Mine" class="btn btn-primary">
+        Ver mis links
+    </a>
+    <button id="copyBtn" type="button" class="btn btn-outline-secondary">Copiar link</button>
+</div>
+
+@section Scripts {
+    <script>
+        (async () => {
+          const input = document.getElementById('generatedLink');
+          const copyBtn = document.getElementById('copyBtn');
+          const url = input?.value ?? '';
+
+          async function copyText(text) {
+            try {
+              await navigator.clipboard.writeText(text);
+              return true;
+            } catch {
+              // Fallback
+              input.select();
+              document.execCommand('copy');
+              return true;
+            }
+          }
+
+          // Auto-copia al cargar
+          if (url) { await copyText(url); }
+
+          // Botón "Copiar"
+          copyBtn?.addEventListener('click', async () => {
+            if (await copyText(url)) {
+              const old = copyBtn.textContent;
+              copyBtn.textContent = 'Copiado';
+              setTimeout(() => copyBtn.textContent = old, 1500);
+            }
+          });
+        })();
+    </script>
+}
