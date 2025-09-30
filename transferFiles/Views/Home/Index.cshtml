@@ -87,9 +87,9 @@
                             {
                                 var badge = row.IsExpired ? "bg-danger" : "bg-success";
                                 <tr>
-                                    <td>@row.CreatedAtUtc:yyyy-MM-dd HH:mm</td>
+                                    <td>@row.CreatedAtUtc</td>
                                     <td class="text-truncate" style="max-width:260px">@row.FileName</td>
-                                    <td>@row.ExpiresAtUtc:yyyy-MM-dd HH:mm</td>
+                                    <td>@row.ExpiresAtUtc</td>
                                     <td>
                                         <span class="badge @badge">@(row.IsExpired ? "Expired" : "Active")</span>
                                     </td>

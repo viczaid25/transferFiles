@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Transfer creado";
     var link = (string)ViewBag.TransferLink;
+    var pwd = (string)ViewBag.Password;
     var validityDays = (int?)ViewBag.ValidityDays ?? 7;
 }
 
@@ -11,24 +12,37 @@
     </div>
 
     <div class="card-body">
-        <p class="mb-2">
-            Comparte este link. Es válido por <strong>@validityDays día@(validityDays == 1 ? "" : "s")</strong>.
+        <p class="mb-3">
+            El link está protegido con contraseña y es válido por <strong>@validityDays día@(validityDays == 1 ? "" : "s")</strong>.
         </p>
 
-        <!-- Campo de link con botón de copiar integrado -->
-        <div class="input-group mb-2">
+        <!-- Link -->
+        <label class="form-label fw-semibold"><i class="fa-solid fa-link me-1 text-primary"></i> Link</label>
+        <div class="input-group mb-3">
             <input id="generatedLink" class="form-control" value="@link" readonly />
-            <button id="copyBtn" type="button" class="btn btn-outline-secondary">
+            <button id="copyLinkBtn" type="button" class="btn btn-outline-secondary">
                 <i class="fa-regular fa-copy me-1"></i> Copiar
             </button>
             <a href="@link" target="_blank" rel="noopener" class="btn btn-primary">
                 <i class="fa-solid fa-up-right-from-square me-1"></i> Abrir
             </a>
         </div>
-        <div class="form-text">El link se copió automáticamente al portapapeles.</div>
 
-        <!-- Acciones -->
+        <!-- Password -->
+        <label class="form-label fw-semibold"><i class="fa-solid fa-lock me-1 text-primary"></i> Contraseña</label>
+        <div class="input-group mb-2">
+            <input id="generatedPassword" class="form-control" value="@pwd" readonly />
+            <button id="copyPwdBtn" type="button" class="btn btn-outline-secondary">
+                <i class="fa-regular fa-copy me-1"></i> Copiar
+            </button>
+        </div>
+        <div class="form-text">El link y la contraseña se copiaron automáticamente al portapapeles.</div>
+
+        <!-- Copiar ambos -->
         <div class="d-flex flex-wrap gap-2 mt-4">
+            <button id="copyBothBtn" type="button" class="btn btn-outline-primary">
+                <i class="fa-regular fa-copy me-1"></i> Copiar link + contraseña
+            </button>
             <a asp-controller="Transfers" asp-action="New" class="btn btn-outline-secondary">
                 <i class="fa-solid fa-plus me-1"></i> Crear otro
             </a>
@@ -42,32 +56,50 @@
 @section Scripts {
     <script>
         (function () {
-          const input   = document.getElementById('generatedLink');
-          const copyBtn = document.getElementById('copyBtn');
-          const url     = input?.value ?? '';
+          const linkInput = document.getElementById('generatedLink');
+          const pwdInput  = document.getElementById('generatedPassword');
+          const copyLinkBtn = document.getElementById('copyLinkBtn');
+          const copyPwdBtn  = document.getElementById('copyPwdBtn');
+          const copyBothBtn = document.getElementById('copyBothBtn');
 
           async function copyText(text) {
             try {
               await navigator.clipboard.writeText(text);
               return true;
             } catch {
-              // Fallback para navegadores viejos
-              input.select();
+              const tmp = document.createElement('input');
+              tmp.value = text;
+              document.body.appendChild(tmp);
+              tmp.select();
               document.execCommand('copy');
+              document.body.removeChild(tmp);
               return true;
             }
           }
 
-          // Auto-copia al cargar
-          if (url) { copyText(url); }
+          function flash(btn, okHtml) {
+            const old = btn.innerHTML;
+            btn.innerHTML = okHtml;
+            setTimeout(() => btn.innerHTML = old, 1200);
+          }
 
-          // Botón "Copiar"
-          copyBtn?.addEventListener('click', async () => {
-            if (await copyText(url)) {
-              const old = copyBtn.innerHTML;
-              copyBtn.innerHTML = '<i class="fa-solid fa-check me-1"></i> Copiado';
-              setTimeout(() => copyBtn.innerHTML = old, 1200);
-            }
+          // Auto-copiar ambos al cargar
+          (async () => {
+            if (linkInput?.value) await copyText(linkInput.value);
+            if (pwdInput?.value)  await copyText(pwdInput.value);
+          })();
+
+          copyLinkBtn?.addEventListener('click', async () => {
+            if (await copyText(linkInput.value)) flash(copyLinkBtn, '<i class="fa-solid fa-check me-1"></i> Copiado');
+          });
+
+          copyPwdBtn?.addEventListener('click', async () => {
+            if (await copyText(pwdInput.value)) flash(copyPwdBtn, '<i class="fa-solid fa-check me-1"></i> Copiado');
+          });
+
+          copyBothBtn?.addEventListener('click', async () => {
+            const combined = `Link: ${linkInput.value}\nPassword: ${pwdInput.value}`;
+            if (await copyText(combined)) flash(copyBothBtn, '<i class="fa-solid fa-check me-1"></i> Copiado');
           });
         })();
     </script>

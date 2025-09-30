@@ -11,5 +11,7 @@
         public DateTime ExpiresAtUtc { get; set; }
         public TimeSpan Remaining => IsExpired ? TimeSpan.Zero : (ExpiresAtUtc - DateTime.UtcNow);
         public string Status => IsExpired ? "Expired" : "Active";
+        public string? Password { get; set; }
+
     }
 }

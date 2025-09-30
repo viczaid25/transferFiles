@@ -18,6 +18,15 @@ public class TransfersController : Controller
     [HttpGet]
     public IActionResult New() => View();
 
+    private static string GeneratePassword(int length = 10)
+    {
+        // Evita caracteres ambiguos (O/0, I/l, etc.)
+        const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789@$!%*?&";
+        var rng = new Random();
+        return new string(Enumerable.Repeat(chars, length)
+            .Select(s => s[rng.Next(s.Length)]).ToArray());
+    }
+
     [HttpPost]
     [RequestSizeLimit(long.MaxValue)] // habilitar grandes (configura Kestrel/IIS si aplica)
     public async Task<IActionResult> New(List<IFormFile> files, string? subject, string? message)
@@ -25,11 +34,15 @@ public class TransfersController : Controller
         if (files is null || files.Count == 0)
             return BadRequest("Selecciona al menos un archivo.");
 
-        // 1) Crear transfer con metadatos (nombre + tamaño)
-        var meta = files.Select(f => (f.FileName, f.Length));
-        var created = await _tn.CreateTransferAsync(meta, subject, message);
+        // 1) Generar contraseña automática
+        var password = GeneratePassword(10);
 
-        // 2) Para cada archivo, subir sus partes
+        // 2) Crear transfer con contraseña
+        var meta = files.Select(f => (f.FileName, f.Length));
+        var created = await _tn.CreateTransferAsync(meta, subject, message, password: password);
+
+
+        // 3) Para cada archivo, subir sus partes
         foreach (var f in created.files)
         {
             var formFile = files.First(ff => ff.FileName == f.name && ff.Length == f.size);
@@ -53,7 +66,7 @@ public class TransfersController : Controller
         // 4) Completar transfer
         await _tn.CompleteTransferAsync(created.transferId);
 
-        // 2) Armar datos para el log
+        // 5 Armar datos para el log
         var winUser =
             _http.HttpContext?.User?.Identity?.Name // "DOMINIO\\usuario" si tienes Windows Auth
             ?? User?.Identity?.Name
@@ -69,7 +82,8 @@ public class TransfersController : Controller
             Link = created.link,
             CreatedAtUtc = DateTime.UtcNow,
             FileName = firstFileName,
-            Status = "Created"
+            Status = "Created",
+            Password = password
         };
 
         _db.TransferLinkLogs.Add(log);
@@ -79,6 +93,8 @@ public class TransfersController : Controller
 
         // Mostrar link final
         ViewBag.TransferLink = created.link;
+        ViewBag.Password = password;
+        ViewBag.ValidityDays = 7; // o desde Options si lo tienes
         return View("Success");
     }
 }

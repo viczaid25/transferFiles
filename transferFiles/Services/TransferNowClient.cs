@@ -20,17 +20,14 @@ public sealed class TransferNowClient
     string? message = null,
     string? customId = null,
     DateTimeOffset? validityEnd = null,
-    IEnumerable<string>? toEmails = null)
+    IEnumerable<string>? toEmails = null,
+    string? password = null)   // <-- nuevo
     {
         var fileList = files
             .Select(f => new { name = f.Name, size = f.Size })
             .Where(f => !string.IsNullOrWhiteSpace(f.name) && f.size > 0)
             .ToArray();
 
-        if (fileList.Length == 0)
-            throw new InvalidOperationException("No hay archivos válidos (size > 0).");
-
-        // Construye el payload SOLO con lo necesario (y como string donde pide string)
         var payload = new Dictionary<string, object?>
         {
             ["langCode"] = "es",
@@ -45,13 +42,13 @@ public sealed class TransferNowClient
             payload["customId"] = customId; // string
 
         if (validityEnd.HasValue)
-            payload["validityEnd"] = validityEnd.Value
-                                       .UtcDateTime
-                                       .ToString("yyyy-MM-dd'T'HH:mm:ss'Z'"); // string ISO-8601
+            payload["validityEnd"] = validityEnd.Value.UtcDateTime.ToString("yyyy-MM-dd'T'HH:mm:ss'Z'"); // string
+
+        if (!string.IsNullOrWhiteSpace(password))
+            payload["password"] = password; // <-- contraseña al crear
 
         var endpoint = "transfers";
         var resp = await _http.PostAsJsonAsync(endpoint, payload);
-
         if (!resp.IsSuccessStatusCode)
         {
             var text = await resp.Content.ReadAsStringAsync();
@@ -61,6 +58,7 @@ public sealed class TransferNowClient
 
         return (await resp.Content.ReadFromJsonAsync<CreateTransferResponse>())!;
     }
+
 
 
 

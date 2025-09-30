@@ -40,7 +40,8 @@ public class LinksController : Controller
                 CreatedAtUtc = x.CreatedAtUtc,
                 FileName = x.FileName,
                 ExpiresAtUtc = x.CreatedAtUtc.AddDays(_validityDays),
-                IsExpired = nowUtc >= x.CreatedAtUtc.AddDays(_validityDays)
+                IsExpired = nowUtc >= x.CreatedAtUtc.AddDays(_validityDays),
+                Password = x.Password
             })
             .ToListAsync();
 

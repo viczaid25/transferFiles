@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<transferFiles.Models.ViewModels.TransferLinkRowVm>
+@using System.Linq
 @{
     ViewData["Title"] = "Mis links generados";
     int validityDays = ViewBag.ValidityDays ?? 7;
@@ -14,6 +15,7 @@
     </div>
 
     <div class="card-body">
+
         <p class="text-muted mb-3">
             Usuario: <strong>@(ViewBag.CurrentUser ?? "")</strong>
         </p>
@@ -25,9 +27,13 @@
             <button id="clearFilter" class="btn btn-outline-secondary" type="button">Limpiar</button>
         </div>
 
-        @if (!Model.Any())
+        @if (Model == null || !Model.Any())
         {
-            <div class="text-muted">Aún no has generado links.</div>
+            <div class="card shadow-sm rounded-lg">
+                <div class="card-body">
+                    <div class="text-muted">Aún no has generado links.</div>
+                </div>
+            </div>
         }
         else
         {
@@ -40,6 +46,7 @@
                             <th>Archivo</th>
                             <th>Link</th>
                             <th>Estatus</th>
+                            <th>🔐 Contraseña</th>
                             <th style="width:1%"></th>
                         </tr>
                     </thead>
@@ -48,13 +55,15 @@
                         {
                             var badgeClass = row.IsExpired ? "bg-danger" : "bg-success";
                             <tr>
-                                <td data-col="created">@row.CreatedAtUtc:yyyy-MM-dd HH:mm:ss</td>
-                                <td data-col="expires">@row.ExpiresAtUtc:yyyy-MM-dd HH:mm:ss</td>
-                                <td data-col="file" class="text-truncate" style="max-width:260px">@row.FileName</td>
-                                <td data-col="link" class="text-truncate" style="max-width:420px">
+                                <td>@row.CreatedAtUtc:yyyy-MM-dd HH:mm:ss</td>
+                                <td>@row.ExpiresAtUtc:yyyy-MM-dd HH:mm:ss</td>
+                                <td class="text-truncate" style="max-width:260px">@row.FileName</td>
+
+                                <td class="text-truncate" style="max-width:420px">
                                     <a href="@row.Link" target="_blank" rel="noopener">@row.Link</a>
                                 </td>
-                                <td data-col="status">
+
+                                <td>
                                     <span class="badge @badgeClass">@(row.IsExpired ? "Expired" : "Active")</span>
                                     @if (!row.IsExpired)
                                     {
@@ -63,6 +72,34 @@
                                         </small>
                                     }
                                 </td>
+
+                                <!-- Columna contraseña -->
+                                <td class="text-nowrap">
+                                    @if (!string.IsNullOrEmpty(row.Password))
+                                    {
+                                        <div class="input-group input-group-sm" style="max-width:230px">
+                                            <input type="password"
+                                                   class="form-control pwd-field"
+                                                   value="@row.Password"
+                                                   readonly />
+                                            <button type="button"
+                                                    class="btn btn-outline-secondary toggle-pwd-btn"
+                                                    title="Mostrar/Ocultar">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </button>
+                                            <button type="button"
+                                                    class="btn btn-outline-secondary copy-pwd-btn"
+                                                    title="Copiar contraseña">
+                                                <i class="fa-regular fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">—</span>
+                                    }
+                                </td>
+
                                 <td class="text-nowrap">
                                     <button type="button"
                                             class="btn btn-sm btn-outline-secondary copy-link-btn"
@@ -86,49 +123,73 @@
 @section Scripts {
     <script>
         (function () {
-          // Copiar con feedback
+          // Copiar LINK (ya lo tenías)
           document.addEventListener('click', async (e) => {
-            const btn = e.target.closest('.copy-link-btn');
-            if (!btn) return;
-            const url = btn.getAttribute('data-link') || '';
+            const linkBtn = e.target.closest('.copy-link-btn');
+            if (!linkBtn) return;
+            const url = linkBtn.getAttribute('data-link') || '';
             if (!url) return;
 
             async function copy(text) {
-              try {
-                await navigator.clipboard.writeText(text);
-              } catch {
+              try { await navigator.clipboard.writeText(text); }
+              catch {
                 const tmp = document.createElement('input');
-                tmp.value = text;
-                document.body.appendChild(tmp);
-                tmp.select();
-                document.execCommand('copy');
+                tmp.value = text; document.body.appendChild(tmp);
+                tmp.select(); document.execCommand('copy');
                 document.body.removeChild(tmp);
               }
             }
 
-            const oldHtml = btn.innerHTML;
+            const old = linkBtn.innerHTML;
             await copy(url);
-            btn.innerHTML = '<i class="fa-solid fa-check"></i>';
-            setTimeout(() => btn.innerHTML = oldHtml, 1200);
+            linkBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+            setTimeout(() => linkBtn.innerHTML = old, 1100);
           });
 
-          // Filtro local simple (archivo / URL)
-          const filterInput = document.getElementById('filterInput');
-          const clearBtn = document.getElementById('clearFilter');
-          const tbody = document.querySelector('#linksTable tbody');
+          // Mostrar/ocultar contraseña por fila
+          document.addEventListener('click', (e) => {
+            const toggleBtn = e.target.closest('.toggle-pwd-btn');
+            if (!toggleBtn) return;
+            const group = toggleBtn.closest('.input-group');
+            const input = group?.querySelector('.pwd-field');
+            const icon = toggleBtn.querySelector('i');
+            if (!input) return;
 
-          function applyFilter() {
-            const q = (filterInput.value || '').toLowerCase().trim();
-            if (!tbody) return;
-            for (const tr of tbody.rows) {
-              const file = (tr.querySelector('[data-col="file"]')?.textContent || '').toLowerCase();
-              const link = (tr.querySelector('[data-col="link"]')?.textContent || '').toLowerCase();
-              tr.style.display = (file.includes(q) || link.includes(q)) ? '' : 'none';
+            if (input.type === 'password') {
+              input.type = 'text';
+              if (icon) { icon.classList.remove('fa-eye'); icon.classList.add('fa-eye-slash'); }
+            } else {
+              input.type = 'password';
+              if (icon) { icon.classList.remove('fa-eye-slash'); icon.classList.add('fa-eye'); }
             }
-          }
+          });
 
-          filterInput?.addEventListener('input', applyFilter);
-          clearBtn?.addEventListener('click', () => { filterInput.value = ''; applyFilter(); });
+          // Copiar contraseña por fila
+          document.addEventListener('click', async (e) => {
+            const copyPwdBtn = e.target.closest('.copy-pwd-btn');
+            if (!copyPwdBtn) return;
+            const group = copyPwdBtn.closest('.input-group');
+            const input = group?.querySelector('.pwd-field');
+            if (!input) return;
+
+            const text = input.value || '';
+            async function copy(text) {
+              try { await navigator.clipboard.writeText(text); }
+              catch {
+                const tmp = document.createElement('input');
+                tmp.value = text; document.body.appendChild(tmp);
+                tmp.select(); document.execCommand('copy');
+                document.body.removeChild(tmp);
+              }
+            }
+
+            const old = copyPwdBtn.innerHTML;
+            await copy(text);
+            copyPwdBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+            setTimeout(() => copyPwdBtn.innerHTML = old, 1100);
+          });
+
         })();
     </script>
 }
+
