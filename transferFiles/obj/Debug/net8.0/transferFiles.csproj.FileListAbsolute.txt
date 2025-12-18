@@ -157,12 +157,6 @@ C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\scope
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\staticwebassets\msbuild.transferFiles.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\staticwebassets\msbuild.transferFiles.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\staticwebassets\msbuild.build.transferFiles.props
-C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.transferFiles.props
-C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.transferFiles.props
-C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\transfer.E686543A.Up2Date
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\transferFiles.dll
@@ -171,3 +165,8 @@ C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\trans
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\transferFiles.genruntimeconfig.cache
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\ref\transferFiles.dll
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\transferFiles.sourcelink.json
+C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Debug\net8.0\staticwebassets.build.json.cache

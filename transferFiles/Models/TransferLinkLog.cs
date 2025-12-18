@@ -9,6 +9,7 @@
         public string FileName { get; set; } = "";      // si subes varios, guarda el principal o concatena
         public string Status { get; set; } = "Created"; // Created | Expired | Deleted | etc.
         public string? Password { get; set; }
+        public string? Reason { get; set; }
 
     }
 }

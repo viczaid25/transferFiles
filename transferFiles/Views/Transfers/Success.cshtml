@@ -85,9 +85,10 @@
 
           // Auto-copiar ambos al cargar
           (async () => {
-            if (linkInput?.value) await copyText(linkInput.value);
-            if (pwdInput?.value)  await copyText(pwdInput.value);
+          const combined = `Link: ${linkInput.value} \r\nPassword: ${pwdInput.value}`;
+          if (linkInput?.value && pwdInput?.value) await copyText(combined);
           })();
+
 
           copyLinkBtn?.addEventListener('click', async () => {
             if (await copyText(linkInput.value)) flash(copyLinkBtn, '<i class="fa-solid fa-check me-1"></i> Copiado');
@@ -96,11 +97,12 @@
           copyPwdBtn?.addEventListener('click', async () => {
             if (await copyText(pwdInput.value)) flash(copyPwdBtn, '<i class="fa-solid fa-check me-1"></i> Copiado');
           });
-
           copyBothBtn?.addEventListener('click', async () => {
-            const combined = `Link: ${linkInput.value}\nPassword: ${pwdInput.value}`;
-            if (await copyText(combined)) flash(copyBothBtn, '<i class="fa-solid fa-check me-1"></i> Copiado');
-          });
+          const combined = `Link: ${linkInput.value} \r\nPassword: ${pwdInput.value}`;
+          if (await copyText(combined)) {
+            flash(copyBothBtn, '<i class="fa-solid fa-check me-1"></i> Copiado');
+          }
+        });
         })();
     </script>
 }

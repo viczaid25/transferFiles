@@ -18,6 +18,35 @@ public class TransfersController : Controller
     [HttpGet]
     public IActionResult New() => View();
 
+    private static string NormalizeTransferNowLink(string? link)
+    {
+        if (string.IsNullOrWhiteSpace(link)) return "";
+
+        link = link.Trim();
+
+        // Asegura esquema
+        if (!link.StartsWith("http://", StringComparison.OrdinalIgnoreCase) &&
+            !link.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
+        {
+            link = "https://" + link;
+        }
+
+        var uri = new Uri(link);
+
+        // Si viene como meax.transfernow.net, convertir a www.transfernow.net
+        var host = uri.Host;
+        if (host.EndsWith(".transfernow.net", StringComparison.OrdinalIgnoreCase) &&
+            !host.Equals("www.transfernow.net", StringComparison.OrdinalIgnoreCase))
+        {
+            // fuerza www
+            var builder = new UriBuilder(uri) { Host = "www.transfernow.net" };
+            return builder.Uri.ToString();
+        }
+
+        return uri.ToString();
+    }
+
+
     private static string GeneratePassword(int length = 10)
     {
         // Evita caracteres ambiguos (O/0, I/l, etc.)
@@ -28,18 +57,23 @@ public class TransfersController : Controller
     }
 
     [HttpPost]
-    [RequestSizeLimit(long.MaxValue)] // habilitar grandes (configura Kestrel/IIS si aplica)
-    public async Task<IActionResult> New(List<IFormFile> files, string? subject, string? message)
+    [RequestSizeLimit(long.MaxValue)]
+    public async Task<IActionResult> New(List<IFormFile> files, string? message) // <-- sin subject
     {
         if (files is null || files.Count == 0)
             return BadRequest("Selecciona al menos un archivo.");
 
+        // Razón obligatoria
+        if (string.IsNullOrWhiteSpace(message))
+            return BadRequest("La Razón es obligatoria.");
+
         // 1) Generar contraseña automática
         var password = GeneratePassword(10);
 
-        // 2) Crear transfer con contraseña
+        // 2) Crear transfer con contraseña (sin subject)
         var meta = files.Select(f => (f.FileName, f.Length));
-        var created = await _tn.CreateTransferAsync(meta, subject, message, password: password);
+        var created = await _tn.CreateTransferAsync(meta, subject: null, message: message, password: password);
+        var finalLink = NormalizeTransferNowLink(created.link);
 
 
         // 3) Para cada archivo, subir sus partes
@@ -50,53 +84,47 @@ public class TransfersController : Controller
 
             foreach (var part in f.multipartUpload.parts.OrderBy(p => p.partNumber))
             {
-                // Pedir URL firmada
                 var uploadUrl = await _tn.GetPartUploadUrlAsync(created.transferId, f.id, part.partNumber, f.multipartUpload.uploadId);
 
-                // Cortar el stream a la porción pedida
                 stream.Seek(part.start, SeekOrigin.Begin);
-                using var slice = new ReadOnlySubstream(stream, part.size); // clase auxiliar abajo
+                using var slice = new ReadOnlySubstream(stream, part.size);
                 await TransferNowClient.UploadPartAsync(uploadUrl, slice, part.size);
             }
 
-            // 3) Completar el archivo
+            // Completar el archivo
             await _tn.CompleteFileAsync(created.transferId, f.id, f.multipartUpload.uploadId);
         }
 
         // 4) Completar transfer
         await _tn.CompleteTransferAsync(created.transferId);
 
-        // 5 Armar datos para el log
-        var winUser =
-            _http.HttpContext?.User?.Identity?.Name // "DOMINIO\\usuario" si tienes Windows Auth
-            ?? User?.Identity?.Name
-            ?? Environment.UserName
-            ?? "unknown";
+        // 5) Usuario Windows (evitar Environment.UserName en IIS)
+        var winUser = (User?.Identity?.IsAuthenticated == true && !string.IsNullOrWhiteSpace(User.Identity!.Name))
+            ? User.Identity!.Name!
+            : "unknown";
 
-        // Si hay varios archivos, puedes guardar el primero o concatenar
         var firstFileName = files.First().FileName;
 
         var log = new TransferLinkLog
         {
             WindowsUser = winUser,
-            Link = created.link,
+            Link = finalLink,
             CreatedAtUtc = DateTime.UtcNow,
             FileName = firstFileName,
             Status = "Created",
-            Password = password
+            Password = password,
+            Reason = message
         };
 
         _db.TransferLinkLogs.Add(log);
         await _db.SaveChangesAsync();
 
-
-
-        // Mostrar link final
-        ViewBag.TransferLink = created.link;
+        ViewBag.TransferLink = finalLink;
         ViewBag.Password = password;
-        ViewBag.ValidityDays = 7; // o desde Options si lo tienes
+        ViewBag.ValidityDays = 7; // o desde Options
         return View("Success");
     }
+
 }
 
 // Utilidad para leer un segmento del stream sin copiar a disco

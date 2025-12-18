@@ -60,13 +60,7 @@
                         <i class="fas fa-link me-2"></i> Mis links
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="http://10.228.25.9:8080/ords/f?p=118:1:1844335932074:::::"
-                       target="_blank" rel="noopener">
-                        <i class="fas fa-database me-2"></i> MEAX Requests System
-                    </a>
-                </li>
+            
             </ul>
         </div>
 
@@ -79,11 +73,7 @@
                         @(User.FindFirst("DisplayName")?.Value ?? User.Identity?.Name)
                     </div>
                 </div>
-                <div class="p-2">
-                    <a class="btn btn-sm btn-outline-light w-100" asp-controller="Account" asp-action="Logout">
-                        <i class="fas fa-sign-out-alt me-1"></i> Logout
-                    </a>
-                </div>
+               
             }
             else
             {

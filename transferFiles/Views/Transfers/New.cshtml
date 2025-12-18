@@ -7,6 +7,7 @@
         <i class="fa-solid fa-paper-plane me-2"></i>
         <span>Generar link de archivos</span>
     </div>
+
     <div class="card-body">
         <form asp-action="New" method="post" enctype="multipart/form-data">
             <div class="mb-3">
@@ -14,21 +15,19 @@
                     <i class="fa-solid fa-file-arrow-up me-1 text-primary"></i> Selecciona archivos
                 </label>
                 <input type="file" name="files" multiple class="form-control" required />
-                <div class="form-text text-muted">Puedes seleccionar uno o varios archivos</div>
+                <div class="form-text text-muted">Puedes seleccionar uno o varios archivos.</div>
             </div>
 
             <div class="mb-3">
                 <label class="form-label fw-semibold">
-                    <i class="fa-solid fa-heading me-1 text-primary"></i> Titulo
+                    <i class="fa-solid fa-message me-1 text-primary"></i> Razón
                 </label>
-                <input type="text" name="subject" class="form-control" placeholder="Ej. Reporte mensual" />
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label fw-semibold">
-                    <i class="fa-solid fa-message me-1 text-primary"></i> Descripcion
-                </label>
-				<textarea name="message" class="form-control" rows="3" placeholder="Agrega una descripcion opcional..."></textarea>
+                <textarea name="message"
+                          class="form-control"
+                          rows="3"
+                          placeholder="Describe la razón de la transferencia..."
+                          required></textarea>
+                <div class="form-text text-muted">Este campo es obligatorio.</div>
             </div>
 
             <div class="d-flex justify-content-end gap-2">
