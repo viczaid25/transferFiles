@@ -64,26 +64,7 @@
             </ul>
         </div>
 
-        <div class="sidebar-footer">
-            @if (User?.Identity?.IsAuthenticated ?? false)
-            {
-                <div class="d-flex align-items-center justify-content-between text-white-50 px-2 mb-2">
-                    <div class="small">
-                        <i class="fas fa-user-circle me-2"></i>
-                        @(User.FindFirst("DisplayName")?.Value ?? User.Identity?.Name)
-                    </div>
-                </div>
-               
-            }
-            else
-            {
-                <div class="p-2">
-                    <a class="btn btn-sm btn-primary w-100" asp-controller="Account" asp-action="Login">
-                        <i class="fas fa-sign-in-alt me-1"></i> Login
-                    </a>
-                </div>
-            }
-        </div>
+        
     </nav>
 
     <!-- Backdrop móvil (lo estiliza tu site.css) -->

@@ -2,14 +2,28 @@ using Microsoft.EntityFrameworkCore;
 using transferFiles.Data;
 using transferFiles.Options;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http.Features;
 
 
 
 var builder = WebApplication.CreateBuilder(args);
+var maxSize = 2L * 1024 * 1024 * 1024; // 2 GB
 
 // EF Core
 builder.Services.AddDbContext<AppDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+builder.WebHost.ConfigureKestrel(o =>
+{
+    o.Limits.MaxRequestBodySize = maxSize;
+});
+
+builder.Services.Configure<FormOptions>(o =>
+{
+    o.MultipartBodyLengthLimit = maxSize;
+});
+
 
 // Options TransferNow
 

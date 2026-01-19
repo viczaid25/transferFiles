@@ -58,25 +58,31 @@ public class TransfersController : Controller
 
     [HttpPost]
     [RequestSizeLimit(long.MaxValue)]
-    public async Task<IActionResult> New(List<IFormFile> files, string? message) // <-- sin subject
+    public async Task<IActionResult> New(List<IFormFile> files, string? message)
     {
         if (files is null || files.Count == 0)
             return BadRequest("Selecciona al menos un archivo.");
 
-        // Razón obligatoria
         if (string.IsNullOrWhiteSpace(message))
             return BadRequest("La Razón es obligatoria.");
 
-        // 1) Generar contraseña automática
         var password = GeneratePassword(10);
 
-        // 2) Crear transfer con contraseña (sin subject)
+        // 👇 Forzar vigencia de 7 días en TransferNow
+        var validityEnd = DateTimeOffset.UtcNow.AddDays(7);
+
         var meta = files.Select(f => (f.FileName, f.Length));
-        var created = await _tn.CreateTransferAsync(meta, subject: null, message: message, password: password);
+
+        var created = await _tn.CreateTransferAsync(
+            meta,
+            subject: null,
+            message: message,
+            validityEnd: validityEnd,
+            password: password
+        );
+
         var finalLink = NormalizeTransferNowLink(created.link);
 
-
-        // 3) Para cada archivo, subir sus partes
         foreach (var f in created.files)
         {
             var formFile = files.First(ff => ff.FileName == f.name && ff.Length == f.size);
@@ -91,14 +97,11 @@ public class TransfersController : Controller
                 await TransferNowClient.UploadPartAsync(uploadUrl, slice, part.size);
             }
 
-            // Completar el archivo
             await _tn.CompleteFileAsync(created.transferId, f.id, f.multipartUpload.uploadId);
         }
 
-        // 4) Completar transfer
         await _tn.CompleteTransferAsync(created.transferId);
 
-        // 5) Usuario Windows (evitar Environment.UserName en IIS)
         var winUser = (User?.Identity?.IsAuthenticated == true && !string.IsNullOrWhiteSpace(User.Identity!.Name))
             ? User.Identity!.Name!
             : "unknown";
@@ -113,7 +116,10 @@ public class TransfersController : Controller
             FileName = firstFileName,
             Status = "Created",
             Password = password,
-            Reason = message
+            Reason = message,
+
+            // (Opcional recomendado) Guarda expiración real (UTC)
+            // ExpiresAtUtc = validityEnd.UtcDateTime
         };
 
         _db.TransferLinkLogs.Add(log);
@@ -121,9 +127,11 @@ public class TransfersController : Controller
 
         ViewBag.TransferLink = finalLink;
         ViewBag.Password = password;
-        ViewBag.ValidityDays = 7; // o desde Options
+        ViewBag.ValidityDays = 7;
+
         return View("Success");
     }
+
 
 }
 

@@ -64,3 +64,4 @@ wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\manifest.json
 wwwroot\sw.js
+wwwroot\images\uploading.gif
