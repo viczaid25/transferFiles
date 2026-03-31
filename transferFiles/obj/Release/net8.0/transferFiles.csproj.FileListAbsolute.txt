@@ -170,3 +170,4 @@ C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\rji
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\rjsmrazor.dswa.cache.json
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\rjsmcshtml.dswa.cache.json
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\staticwebassets.build.json.cache
+C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\swae.build.ex.cache

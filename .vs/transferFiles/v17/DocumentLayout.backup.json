@@ -3,19 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|c:\\users\\dm45207\\source\\repos\\transferfiles\\transferfiles\\wwwroot\\images\\uploading.gif||{25834150-CD7E-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|solutionrelative:transferfiles\\wwwroot\\images\\uploading.gif||{25834150-CD7E-11D0-92DF-00A0C9138C45}"
+      "AbsoluteMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|c:\\users\\dm45207\\source\\repos\\transferfiles\\transferfiles\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|solutionrelative:transferfiles\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dm45207\\source\\repos\\WebApplication1\\WebApplication1\\Controllers\\HomeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|c:\\users\\dm45207\\source\\repos\\transferfiles\\transferfiles\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|solutionrelative:transferfiles\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|c:\\users\\dm45207\\source\\repos\\transferfiles\\transferfiles\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|solutionrelative:transferfiles\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|c:\\users\\dm45207\\source\\repos\\transferfiles\\transferfiles\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|solutionrelative:transferfiles\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|c:\\users\\dm45207\\source\\repos\\transferfiles\\transferfiles\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|solutionrelative:transferfiles\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\dm45207\\source\\repos\\WebApplication1\\WebApplication1\\Controllers\\HomeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|c:\\users\\dm45207\\source\\repos\\transferfiles\\transferfiles\\views\\transfers\\new.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -42,16 +46,8 @@
       "RelativeMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|solutionrelative:transferfiles\\models\\transferlinklog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|c:\\users\\dm45207\\source\\repos\\transferfiles\\transferfiles\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|solutionrelative:transferfiles\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|c:\\users\\dm45207\\source\\repos\\transferfiles\\transferfiles\\views\\links\\mine.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|solutionrelative:transferfiles\\views\\links\\mine.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|c:\\users\\dm45207\\source\\repos\\transferfiles\\transferfiles\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|solutionrelative:transferfiles\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{53A37C92-E601-4F36-8DC8-81869FEC3758}|transferFiles\\transferFiles.csproj|c:\\users\\dm45207\\source\\repos\\transferfiles\\transferfiles\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -115,59 +111,23 @@
         },
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "uploading.gif",
-              "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\uploading.gif",
-              "RelativeDocumentMoniker": "transferFiles\\wwwroot\\images\\uploading.gif",
-              "ToolTip": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\images\\uploading.gif",
-              "RelativeToolTip": "transferFiles\\wwwroot\\images\\uploading.gif",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2026-01-12T14:56:45.021Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\WebApplication1\\WebApplication1\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "..\\WebApplication1\\WebApplication1\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\dm45207\\source\\repos\\WebApplication1\\WebApplication1\\Controllers\\HomeController.cs",
               "RelativeToolTip": "..\\WebApplication1\\WebApplication1\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-08T13:27:14.779Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "site.css",
-              "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\css\\site.css",
-              "RelativeDocumentMoniker": "transferFiles\\wwwroot\\css\\site.css",
-              "ToolTip": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\css\\site.css",
-              "RelativeToolTip": "transferFiles\\wwwroot\\css\\site.css",
-              "ViewState": "AgIAAKsBAAAAAAAAAAAkwMgBAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-09-17T21:19:31.083Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "20250911203339_Init_TransferLinkLog.cs",
-              "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Migrations\\20250911203339_Init_TransferLinkLog.cs",
-              "RelativeDocumentMoniker": "transferFiles\\Migrations\\20250911203339_Init_TransferLinkLog.cs",
-              "ToolTip": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Migrations\\20250911203339_Init_TransferLinkLog.cs",
-              "RelativeToolTip": "transferFiles\\Migrations\\20250911203339_Init_TransferLinkLog.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T20:33:40.388Z"
+              "WhenOpened": "2026-01-08T13:27:14.779Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "New.cshtml",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Views\\Transfers\\New.cshtml",
               "RelativeDocumentMoniker": "transferFiles\\Views\\Transfers\\New.cshtml",
@@ -179,7 +139,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 15,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "transferFiles\\Views\\Home\\Index.cshtml",
@@ -191,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "TransferLinkLog.cs",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Models\\TransferLinkLog.cs",
               "RelativeDocumentMoniker": "transferFiles\\Models\\TransferLinkLog.cs",
@@ -203,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 21,
               "Title": "20251215174945_AddReasonToTransferLinkLog.cs",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Migrations\\20251215174945_AddReasonToTransferLinkLog.cs",
               "RelativeDocumentMoniker": "transferFiles\\Migrations\\20251215174945_AddReasonToTransferLinkLog.cs",
@@ -221,13 +181,14 @@
               "RelativeDocumentMoniker": "transferFiles\\Program.cs",
               "ToolTip": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Program.cs",
               "RelativeToolTip": "transferFiles\\Program.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAiwDAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-11T18:51:58.168Z"
+              "WhenOpened": "2025-09-11T18:51:58.168Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 14,
               "Title": "HomeIndexVm.cs",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Models\\ViewModels\\HomeIndexVm.cs",
               "RelativeDocumentMoniker": "transferFiles\\Models\\ViewModels\\HomeIndexVm.cs",
@@ -239,7 +200,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "TransferNowClient.cs",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Services\\TransferNowClient.cs",
               "RelativeDocumentMoniker": "transferFiles\\Services\\TransferNowClient.cs",
@@ -251,7 +212,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Success.cshtml",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Views\\Transfers\\Success.cshtml",
               "RelativeDocumentMoniker": "transferFiles\\Views\\Transfers\\Success.cshtml",
@@ -263,7 +224,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "TransfersController.cs",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Controllers\\TransfersController.cs",
               "RelativeDocumentMoniker": "transferFiles\\Controllers\\TransfersController.cs",
@@ -275,20 +236,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 0,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "transferFiles\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "transferFiles\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAADgAAAAAAAAAAAAuwD4AAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACAAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-11T20:34:57.782Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 16,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "transferFiles\\Controllers\\HomeController.cs",
@@ -300,7 +261,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "LinksController.cs",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Controllers\\LinksController.cs",
               "RelativeDocumentMoniker": "transferFiles\\Controllers\\LinksController.cs",
@@ -309,6 +270,43 @@
               "ViewState": "AgIAACQAAAAAAAAAAAAYwCsAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-11T20:29:18.941Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\appsettings.json",
+              "RelativeDocumentMoniker": "transferFiles\\appsettings.json",
+              "ToolTip": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\appsettings.json",
+              "RelativeToolTip": "transferFiles\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-11T18:50:55.856Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "20250911203339_Init_TransferLinkLog.cs",
+              "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Migrations\\20250911203339_Init_TransferLinkLog.cs",
+              "RelativeDocumentMoniker": "transferFiles\\Migrations\\20250911203339_Init_TransferLinkLog.cs",
+              "ToolTip": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Migrations\\20250911203339_Init_TransferLinkLog.cs",
+              "RelativeToolTip": "transferFiles\\Migrations\\20250911203339_Init_TransferLinkLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-11T20:33:40.388Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "transferFiles\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "transferFiles\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAEcCAAAAAAAAAAAwwE0CAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-09-17T21:19:31.083Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -324,19 +322,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\appsettings.json",
-              "RelativeDocumentMoniker": "transferFiles\\appsettings.json",
-              "ToolTip": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\appsettings.json",
-              "RelativeToolTip": "transferFiles\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-11T18:50:55.856Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 13,
               "Title": "TransferLinkRowVm.cs",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Models\\ViewModels\\TransferLinkRowVm.cs",
               "RelativeDocumentMoniker": "transferFiles\\Models\\ViewModels\\TransferLinkRowVm.cs",
@@ -348,7 +334,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 18,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "transferFiles\\Data\\AppDbContext.cs",
@@ -360,7 +346,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 12,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "transferFiles\\Views\\_ViewImports.cshtml",
@@ -372,7 +358,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 20,
               "Title": "20250925135721_AddPasswordToTransferLinkLog.cs",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Migrations\\20250925135721_AddPasswordToTransferLinkLog.cs",
               "RelativeDocumentMoniker": "transferFiles\\Migrations\\20250925135721_AddPasswordToTransferLinkLog.cs",
@@ -384,7 +370,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 19,
               "Title": "TransferNowOptions.cs",
               "DocumentMoniker": "C:\\Users\\dm45207\\source\\repos\\transferFiles\\transferFiles\\Options\\TransferNowOptions.cs",
               "RelativeDocumentMoniker": "transferFiles\\Options\\TransferNowOptions.cs",
