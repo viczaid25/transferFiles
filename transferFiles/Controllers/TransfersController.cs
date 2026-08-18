@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using transferFiles.Auth;
 using transferFiles.Data;
 using transferFiles.Models;
 
@@ -94,7 +95,7 @@ public class TransfersController : Controller
 
                 stream.Seek(part.start, SeekOrigin.Begin);
                 using var slice = new ReadOnlySubstream(stream, part.size);
-                await TransferNowClient.UploadPartAsync(uploadUrl, slice, part.size);
+                await _tn.UploadPartAsync(uploadUrl, slice, part.size);
             }
 
             await _tn.CompleteFileAsync(created.transferId, f.id, f.multipartUpload.uploadId);
@@ -102,9 +103,9 @@ public class TransfersController : Controller
 
         await _tn.CompleteTransferAsync(created.transferId);
 
-        var winUser = (User?.Identity?.IsAuthenticated == true && !string.IsNullOrWhiteSpace(User.Identity!.Name))
-            ? User.Identity!.Name!
-            : "unknown";
+        // Login de red del usuario según el contrato con meaxHub (claim PcLoginId).
+        // Antes quedaba "unknown" porque la app no tenía autenticación.
+        var winUser = User.PcLoginId() ?? "unknown";
 
         var firstFileName = files.First().FileName;
 

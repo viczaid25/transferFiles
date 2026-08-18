@@ -1,25 +1,61 @@
-﻿@model ErrorViewModel
+@model ErrorViewModel
 @{
     ViewData["Title"] = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<div class="mo-page-wrap">
+    <div class="mo-page-header">
+        <div>
+            <h2>Algo falló</h2>
+            <p>La operación no se completó. Abajo están los datos para rastrearlo.</p>
+        </div>
+    </div>
 
-@if (Model.ShowRequestId)
-{
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
-}
+    <div class="mo-panel">
+        <div class="mo-alert mo-alert-danger">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" /><path d="M12 8v4" /><path d="M12 16h.01" />
+            </svg>
+            <div>
+                <span class="mo-alert-title">Error al procesar la petición</span>
+                @if (Model.ShowRequestId)
+                {
+                    <span>Id de seguimiento: <code>@Model.RequestId</code></span>
+                }
+            </div>
+        </div>
 
-<h3>Development Mode</h3>
-<p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
-</p>
-<p>
-    <strong>The Development environment shouldn't be enabled for deployed applications.</strong>
-    It can result in displaying sensitive information from exceptions to end users.
-    For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
-    and restarting the app.
-</p>
+        <div class="mo-form-group mt-4">
+            @if (!string.IsNullOrEmpty(Model.Path))
+            {
+                <div class="mo-form-hint">Ruta: <code>@Model.Path</code></div>
+            }
+            @if (!string.IsNullOrEmpty(Model.LogPath))
+            {
+                <div class="mo-form-hint">Detalle registrado en: <code>@Model.LogPath</code></div>
+            }
+            else
+            {
+                <div class="mo-form-hint">
+                    No hay carpeta escribible para el log. Define <code>Diagnostics:LogPath</code>
+                    apuntando a una ruta donde el app pool pueda escribir.
+                </div>
+            }
+        </div>
+
+        @if (Model.ShowDetail)
+        {
+            @* Solo aparece con Diagnostics:ShowDetailedErrors = true *@
+            <pre style="background:#f8f8fc;border:1px solid #ececf5;border-radius:10px;padding:14px;font-size:11.5px;line-height:1.5;overflow-x:auto;white-space:pre-wrap;word-break:break-word;">@Model.Detail</pre>
+        }
+
+        <div class="mo-page-actions mt-4">
+            <a asp-controller="Home" asp-action="Index" class="mo-btn mo-btn-primary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                Volver al inicio
+            </a>
+        </div>
+    </div>
+</div>

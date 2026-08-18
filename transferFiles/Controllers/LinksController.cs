@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using transferFiles.Auth;
 using transferFiles.Data;
 using transferFiles.Models.ViewModels;
 using transferFiles.Options;
@@ -21,11 +22,8 @@ public class LinksController : Controller
     [HttpGet]
     public async Task<IActionResult> Mine()
     {
-        var winUser =
-            _http.HttpContext?.User?.Identity?.Name
-            ?? User?.Identity?.Name
-            ?? Environment.UserName
-            ?? "unknown";
+        // Login de red del usuario según el contrato con meaxHub (claim PcLoginId).
+        var winUser = User.PcLoginId() ?? "unknown";
 
         var nowUtc = DateTime.UtcNow;
 

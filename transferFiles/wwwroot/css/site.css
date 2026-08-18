@@ -1,571 +1,49 @@
-/* =========================
-   Variables (Paleta Midnight Moderno)
-   ========================= */
+/* ══════════════════════════════════════════════════════════════
+   transferFiles — estilos propios del sistema
+   ──────────────────────────────────────────────────────────────
+   La identidad visual (navbar, sidebar, banner, botones, tablas,
+   formularios, badges) la da ahora MEAX One:
+     css/meaxone-fonts.css     → Montserrat auto-hospedada
+     css/meaxone-template.css  → sistema de diseño (clases mo-*)
+     css/meaxone-app.css       → complementos locales
+     js/meaxone-app.js         → navbar + sidebar
+     js/meaxone-table.js       → filtros por columna + paginación
+
+   Lo que queda en este archivo es únicamente lo que NO forma parte
+   del sistema de diseño: el overlay de subida de archivos.
+
+   Se eliminaron (ya no se usan, el shell es #mo-navbar/#mo-sidebar/
+   #mo-main): .sidebar*, .top-navbar, header.navbar, .content-wrapper,
+   .sidebar-backdrop, .footer, y los overrides de .card, .btn, .table,
+   .form-control, .badge y h1–h6 de Bootstrap.
+══════════════════════════════════════════════════════════════ */
+
 :root {
-    --color-primary: #060B29;
-    --color-primary-hover: #1e3a8a;
-    --color-accent-vibrant: #3b82f6;
-    --color-primary-gradient: linear-gradient(135deg, #060B29 0%, #1c3375 100%);
-    --color-secondary: #0f172a;
-    --text: #1e293b;
-    --text-muted: #64748b;
-    --bg: #f8fafc;
-    --surface: #ffffff;
-    --border: #e2e8f0;
-    --input-bg: #f1f5f9;
-    --placeholder: #94a3b8;
-    --sidebar-w: 260px;
-    --navbar-h: 64px;
-    --radius: 16px;
-    --radius-sm: 10px;
-    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --shadow-primary: 0 10px 15px -3px rgba(6, 11, 41, 0.3);
-    --focus: 0 0 0 4px rgba(6, 11, 41, 0.15);
-    --bs-primary: var(--color-primary);
-    --col-no-w: 90px;
+    /* Bootstrap sigue presente para el grid y las utilidades; esto
+       alinea su tipografía con Montserrat para que ningún componente
+       suyo se quede en system-ui junto a los mo-*. */
+    --bs-body-font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+
+    --tf-surface: #fff;
+    --tf-border: #ececf5;
+    --tf-radius: 16px;
 }
 
-/* =================
-   Base y Tipograf�a
-   ================= */
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html, body {
-    height: 100%;
-}
+html, body { height: 100%; }
 
-body {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    line-height: 1.6;
-}
+body { line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-.page-title {
-    color: var(--text) !important;
-    font-weight: 800;
-    letter-spacing: -0.025em;
-}
-
-/* =================
-   Navbar (Header Claro / Blanco)
-   ================= */
-.top-navbar, header.navbar {
-    background: var(--surface) !important;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    z-index: 1030;
-    position: fixed;
-    top: 0;
-    left: var(--sidebar-w);
-    right: 0;
-    height: var(--navbar-h);
-    border-bottom: 1px solid var(--border);
-    transition: left .3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ==============
-   Sidebar (Columna Completa Oscura)
-   ============== */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: var(--sidebar-w);
-    background: var(--color-primary);
-    background-image: linear-gradient(to bottom, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.05) 100%);
-    color: #fff;
-    overflow: hidden;
-    border-right: none;
-    box-shadow: 4px 0 15px rgba(0,0,0,0.08);
-    transform: translateX(0);
-    transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1040;
-    display: flex;
-    flex-direction: column;
-}
-
-.sidebar-logo {
-    height: var(--navbar-h);
-    display: flex;
-    align-items: center;
-    padding: 0 1.25rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    flex-shrink: 0;
-}
-
-.sidebar-menu-wrapper {
-    flex: 1;
-    overflow-y: auto;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
-}
-
-    .sidebar-menu-wrapper::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    .sidebar-menu-wrapper::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    .sidebar-menu-wrapper::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 10px;
-    }
-
-        .sidebar-menu-wrapper::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-/* T�tulos en el men� */
-.sidebar .nav-section {
-    letter-spacing: .08em;
-    opacity: .7;
-    font-size: .7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 1rem 0 .5rem 1rem;
-    color: rgba(255,255,255,0.8);
-}
-
-/* Links base */
-.sidebar-menu .nav-link {
-    display: flex;
-    align-items: center;
-    gap: .75rem;
-    padding: .75rem 1rem;
-    color: rgba(255,255,255,0.8);
-    border-radius: var(--radius-sm);
-    margin: 4px 8px;
-    transition: all .2s ease;
-    font-size: .95rem;
-    font-weight: 500;
-    border-left: none;
-    position: relative;
-    text-decoration: none;
-}
-
-    .sidebar-menu .nav-link:hover {
-        background: rgba(255,255,255,.08);
-        color: #fff;
-        transform: translateX(3px);
-    }
-
-    .sidebar-menu .nav-link.active {
-        background: rgba(59, 130, 246, 0.15);
-        color: #fff;
-        font-weight: 600;
-    }
-
-        .sidebar-menu .nav-link.active::before {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 50%;
-            transform: translateY(-50%);
-            height: 60%;
-            width: 4px;
-            background: var(--color-accent-vibrant);
-            border-radius: 0 4px 4px 0;
-            box-shadow: 0 0 8px var(--color-accent-vibrant);
-        }
-
-    .sidebar-menu .nav-link i {
-        width: 20px;
-        text-align: center;
-        font-size: 1.1rem;
-        opacity: 0.9;
-    }
-
-    .sidebar-menu .nav-link.active i {
-        color: var(--color-accent-vibrant);
-        opacity: 1;
-    }
-
-/* Toggle de secciones */
-.sidebar .section-toggle {
-    color: rgba(255,255,255,0.9);
-    font-weight: 600;
-}
-
-    .sidebar .section-toggle:hover {
-        color: #fff;
-        background: rgba(255,255,255,.05);
-    }
-
-    .sidebar .section-toggle .chev {
-        margin-left: auto;
-        font-size: .8rem;
-        opacity: .6;
-        transition: transform .2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .sidebar .section-toggle:not(.collapsed) .chev {
-        transform: rotate(90deg);
-        opacity: 1;
-    }
-
-/* Submen�s */
-.sidebar .collapse {
-    padding: 4px 0 8px 0;
-    background: rgba(0,0,0,0.15);
-    margin: 0 8px;
-    border-radius: var(--radius-sm);
-}
-
-    .sidebar .collapse .nav-link {
-        padding-left: 2.5rem;
-        font-weight: 500;
-        opacity: .85;
-        font-size: 0.9rem;
-        margin: 2px 4px;
-    }
-
-        .sidebar .collapse .nav-link:hover, .sidebar .collapse .nav-link.active {
-            background: rgba(255,255,255,.05);
-            opacity: 1;
-        }
-
-        .sidebar .collapse .nav-link.active {
-            color: var(--color-accent-vibrant);
-        }
-
-            .sidebar .collapse .nav-link.active::before {
-                display: none;
-            }
-
-.sidebar .section-toggle.is-parent-active {
-    background: rgba(255,255,255,.06);
-    color: #fff;
-}
-
-/* Footer del sidebar */
-.sidebar-footer {
-    border-top: 1px solid rgba(255,255,255,0.08);
-    background: rgba(0,0,0,0.15);
-    flex-shrink: 0;
-    padding: 1rem;
-}
-
-/* ====================
-   Contenido Principal
-   ==================== */
-.content-wrapper {
-    margin-top: var(--navbar-h);
-    margin-left: var(--sidebar-w);
-    padding: 1.5rem 2rem;
-    min-height: calc(100vh - var(--navbar-h));
-    transition: margin-left .3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ====================
-   Responsive: Ajustes para M�vil y Tablet
-   ==================== */
-@media (max-width: 991.98px) {
-    .sidebar {
-        transform: translateX(-100%);
-    }
-
-        .sidebar.active {
-            transform: translateX(0);
-        }
-
-    .top-navbar, header.navbar {
-        left: 0 !important;
-        width: 100%;
-    }
-
-    .content-wrapper {
-        margin-left: 0 !important;
-        padding: 1rem;
-    }
-}
-
-/* ====================
-   Backdrop (Fondo oscuro para men� m�vil)
-   ==================== */
-.sidebar-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(6, 11, 41, 0.5);
-    backdrop-filter: blur(2px);
-    z-index: 1035;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-body.sidebar-open .sidebar-backdrop {
-    display: block;
-    opacity: 1;
-}
-
-body.sidebar-open {
-    overflow: hidden;
-}
-
-/* ===================
-   Tarjetas Modernas
-   =================== */
-.card {
-    background: var(--surface);
-    border: 1px solid rgba(255,255,255,0.5);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-}
-
-    .card:hover {
-        box-shadow: var(--shadow-md);
-        transform: translateY(-3px);
-        border-color: rgba(255,255,255,0);
-    }
-
-.card-header {
-    background: transparent;
-    color: var(--text);
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 1.25rem 1.5rem;
-    border-bottom: 1px solid var(--border);
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.03em;
-}
-
-    h1::after, h2::after, h3::after, h4::after, h5::after, h6::after {
-        content: none !important;
-        display: none !important;
-    }
-
-/* =====================
-   Formularios Modernos
-   ===================== */
-.form-control, .form-select {
-    background-color: var(--input-bg) !important;
-    border: 1px solid transparent;
-    border-radius: var(--radius-sm);
-    padding: 0.7rem 1rem;
-    font-size: 0.95rem;
-    color: var(--text);
-    box-shadow: none;
-    transition: all .2s ease;
-}
-
-    .form-control:focus, .form-select:focus {
-        background-color: #fff !important;
-        border-color: var(--color-primary-hover);
-        box-shadow: var(--focus);
-    }
-
-    .form-control::placeholder {
-        color: var(--placeholder);
-        opacity: 1;
-    }
-
-.form-floating > label {
-    color: var(--text-muted) !important;
-    font-weight: 500;
-    padding-left: 1rem;
-}
-
-/* ==================
-   Botones Premium
-   ================== */
-.btn {
-    border-radius: var(--radius-sm);
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.6rem 1.25rem;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-    .btn:active {
-        transform: scale(0.97) !important;
-    }
-
-    .btn:focus-visible {
-        box-shadow: var(--focus);
-    }
-
-.btn-primary {
-    background: var(--color-primary);
-    color: #fff;
-    box-shadow: 0 4px 6px rgba(6, 11, 41, 0.2);
-}
-
-    .btn-primary:hover {
-        background: var(--color-primary-hover);
-        color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 15px rgba(6, 11, 41, 0.3);
-    }
-
-.btn-outline-primary {
-    color: var(--color-primary);
-    background: transparent;
-    box-shadow: inset 0 0 0 2px var(--color-primary);
-}
-
-    .btn-outline-primary:hover {
-        color: #fff;
-        background: var(--color-primary);
-        box-shadow: inset 0 0 0 2px var(--color-primary), 0 4px 10px rgba(6, 11, 41, 0.2);
-        transform: translateY(-1px);
-    }
-
-/* =================
-   Tablas Modernas
-   ================= */
-.table {
-    --bs-table-bg: transparent;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-bottom: 0;
-}
-
-    .table thead th {
-        background-color: #f1f5f9 !important;
-        border-bottom: 1px solid var(--border);
-        border-top: 1px solid var(--border);
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: .7rem;
-        letter-spacing: 1px;
-        color: var(--text-muted);
-        padding: 0.75rem 1rem;
-    }
-
-        .table thead th:first-child {
-            border-top-left-radius: var(--radius);
-        }
-
-        .table thead th:last-child {
-            border-top-right-radius: var(--radius);
-        }
-
-    .table td, .table th {
-        padding: 1rem 1rem;
-        vertical-align: middle;
-        border-top: 1px solid var(--border);
-        color: var(--text);
-        font-size: 0.95rem;
-    }
-
-.table-hover tbody tr:hover td {
-    background: #f8fafc !important;
-}
-
-.table-striped > tbody > tr:nth-of-type(odd) > * {
-    background-color: rgba(241, 245, 249, 0.7);
-    color: var(--text);
-}
-
-.table:not(.table-dark) > :not(caption) > * > * {
-    background-color: var(--bs-table-bg, #fff);
-}
-
-/* =================
-   Utilidades y Badges
-   ================= */
-.rounded-3 {
-    border-radius: var(--radius) !important
-}
-
-.rounded-lg {
-    border-radius: calc(var(--radius) + 4px) !important
-}
-
-.badge {
-    font-weight: 600;
-    padding: 0.4em 0.8em;
-    font-size: .75em;
-    letter-spacing: 0.5px;
-    border-radius: 999px;
-}
-
-/* Estilos de Header Primary */
-.bg-primary, .card-header.bg-primary {
-    background-color: var(--bs-primary) !important;
-}
-
-.card-header.bg-primary, .card-header.text-white {
-    color: #fff !important;
-}
-
-.card-header .fa {
-    color: currentColor;
-}
-
-.card-header.custom-header-primary {
-    background: var(--color-primary) !important;
-    color: #fff !important;
-    border-bottom: none;
-}
-
-    .card-header.custom-header-primary *, .card-header.bg-primary * {
-        color: inherit !important;
-    }
-
-    /* Header Totals y Botones Especiales */
-    .card-header.custom-header-primary .header-totals,
-    .card-header.bg-primary .header-totals {
-        color: #fff !important;
-        font-weight: 800 !important;
-    }
-
-        .card-header.custom-header-primary .header-totals *,
-        .card-header.bg-primary .header-totals * {
-            color: #fff !important;
-            font-weight: 800 !important;
-        }
-
-.card-header .header-cta {
-    color: #fff !important;
-    border: 1px solid rgba(255,255,255,.7) !important;
-    background: rgba(255,255,255,.08);
-    backdrop-filter: saturate(140%) blur(2px);
-    letter-spacing: .2px;
-}
-
-    .card-header .header-cta:hover {
-        background: rgba(255,255,255,.16);
-        border-color: #fff !important;
-        box-shadow: 0 6px 14px rgba(0,0,0,.15);
-        transform: translateY(-1px);
-    }
-
-    .card-header .header-cta:active {
-        transform: translateY(0);
-    }
-
-/* ====================
-   ESTILOS TRANSFERFILES ESPEC�FICOS (MODALES)
-   ==================== */
+/* ══════════════════════════════════════════════════════════════
+   OVERLAY DE SUBIDA ("Generando link…")
+   Sin equivalente en MEAX One: se conserva la pieza tal cual y solo
+   se re-tematiza con la tipografía y los colores de la plantilla.
+══════════════════════════════════════════════════════════════ */
 .tf-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(6, 11, 41, 0.5); /* Oscurecido al nuevo tema */
+    background: rgba(6, 11, 41, 0.55);
     backdrop-filter: blur(3px);
     z-index: 2000;
     display: flex;
@@ -575,14 +53,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .tf-overlay-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
-    padding: 1.5rem 2rem;
+    background: var(--tf-surface);
+    border: 1px solid var(--tf-border);
+    border-radius: var(--tf-radius);
+    box-shadow: 0 20px 48px rgba(6, 11, 41, 0.35);
+    padding: 26px 30px;
     text-align: center;
     min-width: 280px;
     max-width: 420px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.tf-overlay-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #1a1a3e;
+    margin-top: 14px;
+}
+
+.tf-overlay-sub {
+    font-size: 12px;
+    color: #8888a8;
+    margin-top: 4px;
 }
 
 .tf-gif {
@@ -590,5 +82,69 @@ h1, h2, h3, h4, h5, h6 {
     height: 96px;
     object-fit: contain;
     display: block;
-    margin: 0 auto 1rem auto;
+    margin: 0 auto;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LOGIN DE DESARROLLO (Views/Account/Login.cshtml)
+   Pantalla autocontenida, sin navbar ni sidebar. Solo existe en
+   modo dev; en producción autentica el hub.
+══════════════════════════════════════════════════════════════ */
+.tf-login-body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: var(--color-primary-gradient);
+}
+
+.tf-login-card {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 18px;
+    border: 1px solid #f0f0f7;
+    box-shadow: 0 24px 60px rgba(6, 11, 41, 0.45);
+    padding: 28px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.tf-login-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.tf-login-brand img {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.tf-login-brand-name {
+    font-size: 17px;
+    font-weight: 800;
+    color: #1a1a3e;
+    line-height: 1.1;
+}
+
+.tf-login-brand-sub {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #8888a8;
+    letter-spacing: 0.4px;
+    margin-top: 2px;
+}
+
+.tf-login-card .mo-alert { margin-bottom: 20px; }
+
+.tf-login-card code {
+    font-size: 11px;
+    background: #f4f4f9;
+    border-radius: 4px;
+    padding: 1px 4px;
+    color: inherit;
 }

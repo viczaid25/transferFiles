@@ -1,53 +1,87 @@
-﻿@{
+@{
     ViewData["Title"] = "Transfer creado";
     var link = (string)ViewBag.TransferLink;
     var pwd = (string)ViewBag.Password;
     var validityDays = (int?)ViewBag.ValidityDays ?? 7;
 }
 
-<div class="card shadow-sm rounded-lg mt-2">
-    <div class="card-header custom-header-primary d-flex align-items-center">
-        <i class="fa-solid fa-circle-check me-2"></i>
-        <span>¡Listo! Tu link fue generado</span>
+<div class="mo-page-wrap">
+
+    <div class="mo-page-header">
+        <div>
+            <h2>¡Listo! Tu link fue generado</h2>
+            <p>
+                El link está protegido con contraseña y es válido por
+                @validityDays día@(validityDays == 1 ? "" : "s").
+            </p>
+        </div>
     </div>
 
-    <div class="card-body">
-        <p class="mb-3">
-            El link está protegido con contraseña y es válido por <strong>@validityDays día@(validityDays == 1 ? "" : "s")</strong>.
-        </p>
+    <div class="mo-panel">
+
+        <div class="mo-alert mo-alert-success mb-4">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" />
+            </svg>
+            <div>
+                <span class="mo-alert-title">Transferencia creada</span>
+                El link y la contraseña se copiaron automáticamente al portapapeles.
+            </div>
+        </div>
 
         <!-- Link -->
-        <label class="form-label fw-semibold"><i class="fa-solid fa-link me-1 text-primary"></i> Link</label>
-        <div class="input-group mb-3">
-            <input id="generatedLink" class="form-control" value="@link" readonly />
-            <button id="copyLinkBtn" type="button" class="btn btn-outline-secondary">
-                <i class="fa-regular fa-copy me-1"></i> Copiar
-            </button>
-            <a href="@link" target="_blank" rel="noopener" class="btn btn-primary">
-                <i class="fa-solid fa-up-right-from-square me-1"></i> Abrir
-            </a>
+        <div class="mo-form-group">
+            <label class="mo-form-label" for="generatedLink">Link</label>
+            <div class="mo-input-row">
+                <input id="generatedLink" class="mo-form-control" value="@link" readonly />
+                <button id="copyLinkBtn" type="button" class="mo-btn mo-btn-secondary-outline">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                    </svg>
+                    Copiar
+                </button>
+                <a href="@link" target="_blank" rel="noopener" class="mo-btn mo-btn-primary">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    </svg>
+                    Abrir
+                </a>
+            </div>
         </div>
 
-        <!-- Password -->
-        <label class="form-label fw-semibold"><i class="fa-solid fa-lock me-1 text-primary"></i> Contraseña</label>
-        <div class="input-group mb-2">
-            <input id="generatedPassword" class="form-control" value="@pwd" readonly />
-            <button id="copyPwdBtn" type="button" class="btn btn-outline-secondary">
-                <i class="fa-regular fa-copy me-1"></i> Copiar
-            </button>
+        <!-- Contraseña -->
+        <div class="mo-form-group">
+            <label class="mo-form-label" for="generatedPassword">Contraseña</label>
+            <div class="mo-input-row">
+                <input id="generatedPassword" class="mo-form-control" value="@pwd" readonly />
+                <button id="copyPwdBtn" type="button" class="mo-btn mo-btn-secondary-outline">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                    </svg>
+                    Copiar
+                </button>
+            </div>
         </div>
-        <div class="form-text">El link y la contraseña se copiaron automáticamente al portapapeles.</div>
 
-        <!-- Copiar ambos -->
-        <div class="d-flex flex-wrap gap-2 mt-4">
-            <button id="copyBothBtn" type="button" class="btn btn-outline-primary">
-                <i class="fa-regular fa-copy me-1"></i> Copiar link + contraseña
+        <!-- Acciones -->
+        <div class="mo-page-actions mt-4">
+            <button id="copyBothBtn" type="button" class="mo-btn mo-btn-primary-outline">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" /><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                </svg>
+                Copiar link + contraseña
             </button>
-            <a asp-controller="Transfers" asp-action="New" class="btn btn-outline-secondary">
-                <i class="fa-solid fa-plus me-1"></i> Crear otro
+            <a asp-controller="Transfers" asp-action="New" class="mo-btn mo-btn-secondary">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14" /><path d="M12 5v14" />
+                </svg>
+                Crear otro
             </a>
-            <a asp-controller="Links" asp-action="Mine" class="btn btn-outline-primary">
-                <i class="fa-solid fa-link me-1"></i> Ver mis links
+            <a asp-controller="Links" asp-action="Mine" class="mo-btn mo-btn-primary-outline">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+                Ver mis links
             </a>
         </div>
     </div>
@@ -61,6 +95,8 @@
           const copyLinkBtn = document.getElementById('copyLinkBtn');
           const copyPwdBtn  = document.getElementById('copyPwdBtn');
           const copyBothBtn = document.getElementById('copyBothBtn');
+
+          const CHECK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
 
           async function copyText(text) {
             try {
@@ -91,16 +127,16 @@
 
 
           copyLinkBtn?.addEventListener('click', async () => {
-            if (await copyText(linkInput.value)) flash(copyLinkBtn, '<i class="fa-solid fa-check me-1"></i> Copiado');
+            if (await copyText(linkInput.value)) flash(copyLinkBtn, CHECK + ' Copiado');
           });
 
           copyPwdBtn?.addEventListener('click', async () => {
-            if (await copyText(pwdInput.value)) flash(copyPwdBtn, '<i class="fa-solid fa-check me-1"></i> Copiado');
+            if (await copyText(pwdInput.value)) flash(copyPwdBtn, CHECK + ' Copiado');
           });
           copyBothBtn?.addEventListener('click', async () => {
           const combined = `Link: ${linkInput.value} \r\nPassword: ${pwdInput.value}`;
           if (await copyText(combined)) {
-            flash(copyBothBtn, '<i class="fa-solid fa-check me-1"></i> Copiado');
+            flash(copyBothBtn, CHECK + ' Copiado');
           }
         });
         })();

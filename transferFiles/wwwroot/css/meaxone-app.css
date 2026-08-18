@@ -1,0 +1,131 @@
+/* ══════════════════════════════════════════════════════════════
+   MEAX One — complementos LOCALES de transferFiles
+   ──────────────────────────────────────────────────────────────
+   NO modifica meaxone-template.css (ese archivo se copia tal cual
+   desde la plantilla y se actualiza sin tocar nada más).
+
+   Aquí viven únicamente las piezas que este sistema necesita y que
+   la plantilla no define todavía:
+     .mo-input-row    → fila "input + botones" (sustituye a
+                        .input-group de Bootstrap, que no tiene
+                        equivalente en MEAX One)
+     .mo-stat-*       → las 3 tarjetas de conteo del Home
+     .mo-section-title→ título de sección arriba de una tabla
+     .mo-spin         → giro del ícono Lucide "loader" al enviar
+     #mo-banner .*    → botones sobre el degradado del banner
+
+   Todos los colores salen de las variables de meaxone-template.css.
+══════════════════════════════════════════════════════════════ */
+
+/* ── Botones dentro del banner (fondo oscuro) ───────────────── */
+#mo-banner-actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+#mo-banner .mo-btn-secondary-outline {
+    color: #fff;
+    border-color: rgba(255,255,255,0.35);
+}
+
+#mo-banner .mo-btn-secondary-outline:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+
+/* ── Fila "input + botones" ──────────────────────────────────
+   Reemplazo visual de .input-group de Bootstrap: el input y los
+   botones quedan sueltos en un flex, conservando .mo-form-control
+   y .mo-btn tal como los define la plantilla.                  */
+.mo-input-row {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+.mo-input-row .mo-form-control {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.mo-input-row .mo-btn {
+    flex-shrink: 0;
+}
+
+.mo-input-row-sm .mo-form-control {
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+/* ── Tarjetas de conteo (Home) ───────────────────────────────── */
+.mo-stat {
+    background: #fff;
+    border: 1px solid #f0f0f7;
+    border-radius: 16px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    padding: 18px 20px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    height: 100%;
+}
+
+.mo-stat-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #8888a8;
+}
+
+.mo-stat-value {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-top: 4px;
+    color: #1a1a3e;
+}
+
+.mo-stat-value.is-success { color: var(--mo-success-dark); }
+.mo-stat-value.is-danger  { color: var(--mo-danger-dark); }
+
+/* ── Título de sección (arriba de una tabla o panel) ─────────── */
+.mo-section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: #1a1a3e;
+    margin: 0 0 12px;
+}
+
+.mo-section-title svg { color: var(--mo-blue-deep); flex-shrink: 0; }
+
+/* ── Spinner (ícono Lucide "loader-circle") ──────────────────── */
+.mo-spin { animation: moSpin 0.9s linear infinite; transform-origin: 50% 50%; }
+@keyframes moSpin { to { transform: rotate(360deg); } }
+
+/* ── Celdas de tabla que truncan texto largo ─────────────────── */
+.mo-cell-truncate {
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mo-cell-truncate-lg { max-width: 380px; }
+
+.mo-table tbody td a {
+    color: var(--mo-blue-deep);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.mo-table tbody td a:hover { text-decoration: underline; }

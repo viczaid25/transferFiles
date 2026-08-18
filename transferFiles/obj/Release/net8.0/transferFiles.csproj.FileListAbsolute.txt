@@ -158,7 +158,6 @@ C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\sco
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\staticwebassets.build.json
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\staticwebassets.development.json
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\staticwebassets.build.endpoints.json
-C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\transfer.E686543A.Up2Date
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\transferFiles.dll
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\refint\transferFiles.dll
@@ -171,3 +170,6 @@ C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\rjs
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\rjsmcshtml.dswa.cache.json
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\staticwebassets.build.json.cache
 C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\swae.build.ex.cache
+C:\Users\dm45207\source\repos\transferFiles\transferFiles\bin\Release\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\dm45207\source\repos\transferFiles\transferFiles\bin\Release\net8.0\web.config
+C:\Users\dm45207\source\repos\transferFiles\transferFiles\obj\Release\net8.0\staticwebassets.upToDateCheck.txt

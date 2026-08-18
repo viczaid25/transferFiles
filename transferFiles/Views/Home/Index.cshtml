@@ -1,121 +1,130 @@
-﻿@model transferFiles.Models.ViewModels.HomeIndexVm
+@model transferFiles.Models.ViewModels.HomeIndexVm
 @{
     ViewData["Title"] = "Inicio";
 }
 
-<div class="container-fluid">
-    <!-- Hero -->
-    <div class="card shadow-sm mb-4 rounded-lg">
-        <div class="card-body py-4">
-            <div class="d-lg-flex align-items-center justify-content-between">
-                <div class="mb-3 mb-lg-0">
-                    <h1 class="h3 mb-1 page-title">Bienvenido</h1>
-                    <p class="text-muted mb-0">
-                        Hola <strong>@Model.CurrentUser</strong>. Genera y administra tus links de transferencia.
-                        Los links tienen vigencia de <strong>@Model.ValidityDays días</strong>.
-                    </p>
-                </div>
-                <div class="d-grid d-sm-flex gap-2">
-                    <a asp-controller="Transfers" asp-action="New" class="btn btn-primary">
-                        <i class="fa-solid fa-paper-plane me-1"></i> Crear link
-                    </a>
-                    <a asp-controller="Links" asp-action="Mine" class="btn btn-outline-primary">
-                        <i class="fa-solid fa-link me-1"></i> Mis links
-                    </a>
-                </div>
-            </div>
+<!-- ══ BANNER ═══════════════════════════════════════════════ -->
+<div id="mo-banner">
+    <div class="mo-banner-orb mo-banner-orb-1"></div>
+    <div class="mo-banner-orb mo-banner-orb-2"></div>
+
+    <div id="mo-banner-content">
+        <div id="mo-banner-tag">Panel principal</div>
+        @* Saludo con el nombre para mostrar del hub; Model.CurrentUser es el
+           login de red (PcLoginId), que es la llave contra la BD. *@
+        <div id="mo-banner-title">Bienvenido, @(User.NombreParaMostrar() ?? Model.CurrentUser)</div>
+        <div id="mo-banner-sub">
+            Genera y administra tus links de transferencia.
+            Los links tienen vigencia de @Model.ValidityDays días.
         </div>
     </div>
 
-    <!-- Stats -->
+    <div id="mo-banner-actions">
+        <a asp-controller="Transfers" asp-action="New" class="mo-btn mo-btn-primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" />
+            </svg>
+            Crear link
+        </a>
+        <a asp-controller="Links" asp-action="Mine" class="mo-btn mo-btn-secondary-outline">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Mis links
+        </a>
+    </div>
+</div>
+
+<div class="mo-page-wrap">
+
+    <!-- ══ CONTEOS ══════════════════════════════════════════ -->
     <div class="row g-3 mb-4">
         <div class="col-12 col-md-4">
-            <div class="card text-center">
-                <div class="card-body">
-                    <div class="fw-bold text-muted">Total de mis links</div>
-                    <div class="display-6">@Model.TotalMyLinks</div>
-                </div>
+            <div class="mo-stat">
+                <div class="mo-stat-label">Total de mis links</div>
+                <div class="mo-stat-value">@Model.TotalMyLinks</div>
             </div>
         </div>
         <div class="col-12 col-md-4">
-            <div class="card text-center">
-                <div class="card-body">
-                    <div class="fw-bold text-muted">Activos</div>
-                    <div class="display-6 text-success">@Model.ActiveMyLinks</div>
-                </div>
+            <div class="mo-stat">
+                <div class="mo-stat-label">Activos</div>
+                <div class="mo-stat-value is-success">@Model.ActiveMyLinks</div>
             </div>
         </div>
         <div class="col-12 col-md-4">
-            <div class="card text-center">
-                <div class="card-body">
-                    <div class="fw-bold text-muted">Expirados</div>
-                    <div class="display-6 text-danger">@Model.ExpiredMyLinks</div>
-                </div>
+            <div class="mo-stat">
+                <div class="mo-stat-label">Expirados</div>
+                <div class="mo-stat-value is-danger">@Model.ExpiredMyLinks</div>
             </div>
         </div>
     </div>
 
-    <!-- Últimos links -->
-    <div class="card shadow-sm rounded-lg">
-        <div class="card-header custom-header-primary">
-            <div class="d-flex align-items-center">
-                <i class="fa-solid fa-clock-rotate-left me-2"></i>
-                <span>Últimos links generados</span>
-            </div>
-        </div>
-        <div class="card-body">
-            @if (Model.Recent.Count == 0)
-            {
-                <div class="text-muted">Aún no has generado links. ¡Crea el primero!</div>
-            }
-            else
-            {
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead>
-                            <tr>
-                                <th>Creado (UTC)</th>
-                                <th>Archivo</th>
-                                <th>Expira (UTC)</th>
-                                <th>Estado</th>
-                                <th>Link</th>
-                                <th style="width:1%"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var row in Model.Recent)
-                            {
-                                var badge = row.IsExpired ? "bg-danger" : "bg-success";
-                                <tr>
-                                    <td>@row.CreatedAtUtc</td>
-                                    <td class="text-truncate" style="max-width:260px">@row.FileName</td>
-                                    <td>@row.ExpiresAtUtc</td>
-                                    <td>
-                                        <span class="badge @badge">@(row.IsExpired ? "Expired" : "Active")</span>
-                                    </td>
-                                    <td class="text-truncate" style="max-width:360px;">
-                                        <a href="@row.Link" target="_blank" rel="noopener">@row.Link</a>
-                                    </td>
-                                    <td>
-                                        <button type="button"
-                                                class="btn btn-sm btn-outline-secondary copy-link-btn"
-                                                data-link="@row.Link" title="Copiar">
-                                            Copiar
-                                        </button>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <div class="text-end mt-3">
-                    <a asp-controller="Links" asp-action="Mine" class="btn btn-outline-primary btn-sm">
-                        Ver todos
-                    </a>
-                </div>
-            }
-        </div>
+    <!-- ══ ÚLTIMOS LINKS ════════════════════════════════════ -->
+    <div class="mo-section-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /><path d="M12 7v5l4 2" />
+        </svg>
+        Últimos links generados
     </div>
+
+    @if (Model.Recent.Count == 0)
+    {
+        <div class="mo-alert mo-alert-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />
+            </svg>
+            <div>Aún no has generado links. ¡Crea el primero!</div>
+        </div>
+    }
+    else
+    {
+        <div class="mo-table-wrap">
+            <table class="mo-table">
+                <thead>
+                    <tr>
+                        <th>Creado (UTC)</th>
+                        <th>Archivo</th>
+                        <th>Expira (UTC)</th>
+                        <th>Estado</th>
+                        <th>Link</th>
+                        <th style="width:1%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var row in Model.Recent)
+                    {
+                        var badge = row.IsExpired ? "mo-badge-danger" : "mo-badge-success";
+                        <tr>
+                            <td>@row.CreatedAtUtc</td>
+                            <td class="mo-cell-truncate">@row.FileName</td>
+                            <td>@row.ExpiresAtUtc</td>
+                            <td>
+                                <span class="mo-badge @badge">
+                                    <span class="mo-badge-dot"></span>@(row.IsExpired ? "Expired" : "Active")
+                                </span>
+                            </td>
+                            <td class="mo-cell-truncate mo-cell-truncate-lg">
+                                <a href="@row.Link" target="_blank" rel="noopener">@row.Link</a>
+                            </td>
+                            <td>
+                                <button type="button"
+                                        class="mo-btn mo-btn-secondary-outline mo-btn-sm copy-link-btn"
+                                        data-link="@row.Link" title="Copiar">
+                                    Copiar
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mo-page-actions justify-content-end mt-3">
+            <a asp-controller="Links" asp-action="Mine" class="mo-btn mo-btn-primary-outline mo-btn-sm">
+                Ver todos
+            </a>
+        </div>
+    }
 </div>
 
 @section Scripts {

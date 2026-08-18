@@ -1,0 +1,79 @@
+@model transferFiles.Models.ViewModels.DevLoginVm
+@inject IConfiguration Configuration
+@{
+    Layout = null;
+    ViewData["Title"] = "Acceso de desarrollo";
+    var devUser = Configuration.GetSection("Auth:DevUser");
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#060B29">
+    <title>@ViewData["Title"] - Transfer Files</title>
+
+    <link rel="icon" type="image/x-icon" href="~/images/favicon.ico" />
+    <link rel="stylesheet" href="~/css/meaxone-fonts.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/meaxone-template.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/meaxone-app.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="mo-body tf-login-body">
+
+    <div class="tf-login-card">
+        <div class="tf-login-brand">
+            <img src="~/images/logo-mitsubishi.png" alt="" />
+            <div>
+                <div class="tf-login-brand-name">Transfer Files</div>
+                <div class="tf-login-brand-sub">Parte de MEAX One</div>
+            </div>
+        </div>
+
+        <div class="mo-alert mo-alert-warning">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" /><path d="M12 9v4" /><path d="M12 17h.01" />
+            </svg>
+            <div>
+                <span class="mo-alert-title">MODO DESARROLLO — login sin Meax One</span>
+                Solo disponible con el entorno en Development y <code>Auth:DevLogin = true</code>.
+            </div>
+        </div>
+
+        <form asp-controller="Account" asp-action="Login" method="post">
+            <input type="hidden" asp-for="ReturnUrl" />
+
+            <div asp-validation-summary="ModelOnly" class="mo-form-error"></div>
+
+            <div class="mo-form-group">
+                <label class="mo-form-label" asp-for="Username">Usuario</label>
+                <input class="mo-form-control" asp-for="Username" autocomplete="username" autofocus />
+                <span asp-validation-for="Username" class="mo-form-error"></span>
+                <div class="mo-form-hint">
+                    Con <strong>@(devUser["PcLoginId"] ?? "el usuario de config")</strong> se cargan
+                    todos los claims de <code>Auth:DevUser</code> (incluida la nómina
+                    @(string.IsNullOrWhiteSpace(devUser["EmployeeId"]) ? "vacía" : devUser["EmployeeId"])).
+                    Con cualquier otro usuario, el perfil va sin nómina ni puesto.
+                </div>
+            </div>
+
+            <div class="mo-form-group">
+                <label class="mo-form-label" asp-for="Password">Contraseña</label>
+                <input class="mo-form-control" asp-for="Password" type="password" autocomplete="current-password" />
+                <span asp-validation-for="Password" class="mo-form-error"></span>
+                <div class="mo-form-hint">La de <code>Auth:DevPassword</code> (por defecto <code>dev</code>).</div>
+            </div>
+
+            <button type="submit" class="mo-btn mo-btn-primary mo-btn-block">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" /><polyline points="10 17 15 12 10 7" /><line x1="15" x2="3" y1="12" y2="12" />
+                </svg>
+                Entrar
+            </button>
+        </form>
+    </div>
+
+    @* Sin scripts de validación cliente: la página es autocontenida (no carga
+       jQuery) y la validación del login la resuelve el servidor. *@
+</body>
+</html>
