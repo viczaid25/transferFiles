@@ -4,6 +4,8 @@
     {
         public int Id { get; set; }
         public string WindowsUser { get; set; } = "";
+        public string? CreatedByName { get; set; }
+        public string? CreatedByDepartment { get; set; }
         public string Link { get; set; } = "";
         public DateTime CreatedAtUtc { get; set; }
         public string FileName { get; set; } = "";

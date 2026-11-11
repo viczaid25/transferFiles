@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("7927142d-b526-4b1e-aadc-a9aac8d51def")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("transferFiles")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5433027642651e323cac2bc5456fb60713e7a7a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+236d6f3733416d019256753111b8916aa8e79cec")]
 [assembly: System.Reflection.AssemblyProductAttribute("transferFiles")]
 [assembly: System.Reflection.AssemblyTitleAttribute("transferFiles")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

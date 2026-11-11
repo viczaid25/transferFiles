@@ -2,6 +2,7 @@
 @inject IHttpContextAccessor HttpCtx
 @inject IConfiguration Configuration
 @inject transferFiles.Auth.AuthMode AuthMode
+@inject transferFiles.Auth.AdminLogins AdminLogins
 @{
     var ctrl = (ViewContext.RouteData.Values["controller"]?.ToString() ?? "").ToLower();
     var act = (ViewContext.RouteData.Values["action"]?.ToString() ?? "").ToLower();
@@ -164,6 +165,18 @@
                         </svg>
                         <span class="mo-sb-label">Mis links</span>
                     </a>
+
+                    @if (AdminLogins.EsAdmin(User))
+                    {
+                        <div class="mo-sb-section-label">ADMINISTRACIÓN</div>
+
+                        <a class="mo-sb-item @active("Links", "All")" asp-controller="Links" asp-action="All">
+                            <svg class="mo-sb-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                            <span class="mo-sb-label">Todos los links</span>
+                        </a>
+                    }
                 </nav>
 
                 <div id="mo-sb-version">

@@ -38,16 +38,16 @@ public class HomeController : Controller
     public async Task<IActionResult> Index()
     {
         // Login de red del usuario según el contrato con meaxHub (claim PcLoginId).
-        // Es el mismo valor que se guarda en TransferLinkLogs.WindowsUser.
+        // Es el mismo valor que se guarda en created_by_login.
         var user = User.PcLoginId() ?? "unknown";
 
         var now = DateTime.UtcNow;
 
         // Stats
-        var myQuery = _db.TransferLinkLogs.Where(x => x.WindowsUser == user);
+        var myQuery = _db.TransferLinkLogs.Where(x => x.CreatedByLogin == user && !x.IsDeleted);
 
         var total = await myQuery.CountAsync();
-        var active = await myQuery.CountAsync(x => now < x.CreatedAtUtc.AddDays(_validityDays));
+        var active = await myQuery.CountAsync(x => now < x.ExpiresAtUtc);
         var expired = total - active;
 
         // �ltimos 5
@@ -56,12 +56,12 @@ public class HomeController : Controller
             .Take(5)
             .Select(x => new HomeIndexVm.LinkRow
             {
-                Id = x.Id,
+                Id = x.LinkId,
                 FileName = x.FileName,
                 Link = x.Link,
                 CreatedAtUtc = x.CreatedAtUtc,
-                ExpiresAtUtc = x.CreatedAtUtc.AddDays(_validityDays),
-                IsExpired = now >= x.CreatedAtUtc.AddDays(_validityDays)
+                ExpiresAtUtc = x.ExpiresAtUtc,
+                IsExpired = now >= x.ExpiresAtUtc
             })
             .ToListAsync();
 
@@ -76,6 +76,18 @@ public class HomeController : Controller
         };
 
         return View(vm);
+    }
+
+    /// <summary>
+    /// El usuario está autenticado pero no tiene permiso para lo que pidió
+    /// (hoy, la vista de administración). Se le dice con claridad en vez de
+    /// rebotarlo al login o al SSO.
+    /// </summary>
+    [HttpGet]
+    public IActionResult AccessDenied()
+    {
+        Response.StatusCode = StatusCodes.Status403Forbidden;
+        return View();
     }
 
     /// <summary>

@@ -103,24 +103,27 @@ public class TransfersController : Controller
 
         await _tn.CompleteTransferAsync(created.transferId);
 
-        // Login de red del usuario según el contrato con meaxHub (claim PcLoginId).
-        // Antes quedaba "unknown" porque la app no tenía autenticación.
+        // Identidad de quien genera el link: SOLO claims del contrato con meaxHub.
+        // Además del login (que es la llave contra la que se filtra "Mis links"),
+        // ahora se guardan nombre y departamento para no depender del catálogo
+        // del hub al consultar el histórico.
         var winUser = User.PcLoginId() ?? "unknown";
 
         var firstFileName = files.First().FileName;
 
         var log = new TransferLinkLog
         {
-            WindowsUser = winUser,
+            CreatedByLogin = winUser,
+            CreatedByName = User.NombreParaMostrar(),
+            CreatedByDepartment = User.Department(),
             Link = finalLink,
             CreatedAtUtc = DateTime.UtcNow,
+            // Vigencia real que se le pidió a TransferNow, no una calculada.
+            ExpiresAtUtc = validityEnd.UtcDateTime,
             FileName = firstFileName,
             Status = "Created",
             Password = password,
-            Reason = message,
-
-            // (Opcional recomendado) Guarda expiración real (UTC)
-            // ExpiresAtUtc = validityEnd.UtcDateTime
+            Reason = message
         };
 
         _db.TransferLinkLogs.Add(log);

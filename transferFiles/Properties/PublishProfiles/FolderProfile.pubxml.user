@@ -3,7 +3,7 @@
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>\\MEAXS013\inetpub\meaxTransfer</_PublishTargetUrl>
-    <History>True|2026-08-13T14:19:48.5936518Z||;True|2026-02-18T14:57:22.5785689-06:00||;</History>
+    <History>True|2026-08-19T17:53:24.6457149Z||;False|2026-08-19T11:50:41.7992777-06:00||;True|2026-08-13T08:19:48.5936518-06:00||;True|2026-02-18T14:57:22.5785689-06:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

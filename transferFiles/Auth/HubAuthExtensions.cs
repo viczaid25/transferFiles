@@ -172,11 +172,11 @@ public static class HubAuthExtensions
                     return Task.CompletedTask;
                 };
 
-                options.Events.OnRedirectToAccessDenied = context =>
-                {
-                    context.Response.Redirect(BuildSsoUrl(context.HttpContext, config));
-                    return Task.CompletedTask;
-                };
+                // OJO: "acceso denegado" NO debe ir al SSO. El usuario ya está
+                // autenticado; lo que le falta es permiso. Mandarlo al hub haría
+                // que volviera autenticado, siguiera sin permiso, y rebotara otra
+                // vez: un bucle. Se le muestra una página que lo explica.
+                options.AccessDeniedPath = "/Home/AccessDenied";
             });
 
         return services;

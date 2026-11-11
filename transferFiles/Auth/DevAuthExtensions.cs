@@ -18,7 +18,9 @@ public static class DevAuthExtensions
             .AddCookie(options =>
             {
                 options.LoginPath = "/Account/Login";
-                options.AccessDeniedPath = "/Account/Login";
+                // Autenticado pero sin permiso: página propia, no el login
+                // (mandarlo al login no le resuelve nada y confunde).
+                options.AccessDeniedPath = "/Home/AccessDenied";
                 options.Cookie.Name = HubAuthExtensions.LocalCookieName;
                 options.Cookie.Path = "/";
                 options.ExpireTimeSpan = TimeSpan.FromHours(8);

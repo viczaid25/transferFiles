@@ -14,9 +14,25 @@ using Microsoft.AspNetCore.Builder;
 var builder = WebApplication.CreateBuilder(args);
 var maxSize = 2L * 1024 * 1024 * 1024; // 2 GB
 
-// EF Core
+// EF Core.
+// La cadena NO se versiona: viene de la variable de entorno
+// ConnectionStrings__TransferFilesDb (en IIS se define en el app pool).
+// El nombre es propio de este sistema a propósito: las variables de entorno son
+// de máquina, y en MEAXS066 conviven varios sistemas (cada uno usa su nombre:
+// MeaxDb, ProcurementConnection, SalidaDb, TressDB...). Una clave genérica como
+// "DefaultConnection" se podría pisar con la de otra app.
+var connectionString = builder.Configuration.GetConnectionString("TransferFilesDb");
+
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    throw new InvalidOperationException(
+        "Falta la cadena de conexión. Define la variable de entorno " +
+        "ConnectionStrings__TransferFilesDb (MeaxDB, esquema '" + AppDbContext.Schema + "').");
+}
+
 builder.Services.AddDbContext<AppDbContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    opt.UseSqlServer(connectionString, sql =>
+        sql.MigrationsHistoryTable(AppDbContext.MigrationsHistoryTable, AppDbContext.Schema)));
 
 
 builder.WebHost.ConfigureKestrel(o =>
@@ -58,6 +74,15 @@ static HttpClientHandler CrearHandlerTransferNow(IServiceProvider sp)
     {
         handler.Proxy = new WebProxy(opt.ProxyUrl) { BypassProxyOnLocal = true };
         handler.UseProxy = true;
+    }
+    else
+    {
+        // Vacío tiene que significar DIRECTO de verdad. Sin este else,
+        // HttpClientHandler deja UseProxy = true con Proxy = null, que quiere
+        // decir "usa el proxy del sistema": el servidor salía por el proxy
+        // corporativo aunque la config estuviera vacía, y por esa ruta
+        // Cloudflare responde 403 "error code: 1006" (IP bloqueada).
+        handler.UseProxy = false;
     }
 
     return handler;
@@ -111,6 +136,9 @@ builder.Services.AddAuthorizationBuilder()
         .RequireAuthenticatedUser()
         .Build());
 
+// Política "EsAdministrador" para la vista de administración (ver Auth/AdminPolicy.cs).
+builder.Services.AddAdminPolicy(builder.Configuration);
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -138,9 +166,12 @@ app.UseAuthorization();
 
 app.MapDefaultControllerRoute().RequireAuthorization();
 
+var proxyConfigurado = builder.Configuration["TransferNow:ProxyUrl"];
+
 app.Logger.LogInformation(
-    "transferFiles iniciado. Modo dev: {Dev}. Log de errores: {Log}",
+    "transferFiles iniciado. Modo dev: {Dev}. Salida a TransferNow: {Salida}. Log de errores: {Log}",
     devLoginActivo,
+    string.IsNullOrWhiteSpace(proxyConfigurado) ? "DIRECTA (sin proxy)" : $"proxy {proxyConfigurado}",
     errorLog.Ruta ?? "(ninguna carpeta escribible)");
 
 app.Run();
